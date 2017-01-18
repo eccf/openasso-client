@@ -1,0 +1,32 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Types d'opération de maintenance</h1>
+</div>
+
+<div class="wrapper-md">
+  <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.maintenanceType.id ? 'Modifier' : 'Créer' }} un type d'opération de maintenance : <b>{{ vm.maintenanceType.label}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Libellé *</label>
+          <input type="text" class="form-control" ng-model="vm.maintenanceType.label" placeholder="Entrez une valeur" required maxlength="255">
+        </div>
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="vm.remove()" ng-show="vm.maintenanceType.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.vehicle.maintenance_type.list"><i class="fa fa-arrow-left"></i>Retour</a>
+            <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </form>
+</div>

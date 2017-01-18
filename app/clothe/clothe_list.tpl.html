@@ -1,0 +1,87 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Equipements</h1>
+</div>
+
+<div class="wrapper-md">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Liste des équipements en attente - résumé
+    </div>
+    
+    <div class="table-responsive">
+      <table ng-table="ctrl.getClotheSummaryTable()" class="table table-striped b-t b-light">
+        <tr ng-repeat="clothe in $data">
+          <td data-title="'Collection'" sortable="'collection'">
+            {{clothe.collection}}
+          </td>
+          <td data-title="'Nombre'" sortable="'data'">
+            {{clothe.data}}
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div> 
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Liste des équipements en attente - détail par type
+    </div>
+    <div class="table-responsive">
+      <table ng-table="ctrl.getClotheTable()" class="table table-striped b-t b-light">
+        <tr ng-repeat="clothe in $data">
+          <td data-title="'Collection'" sortable="'collection'">
+            {{clothe.collection}}
+          </td>
+          <td data-title="'Type'" sortable="'type'">
+            {{clothe.type}}
+          </td>
+          <td data-title="'Taille'" sortable="'size'">
+            {{clothe.size}}
+          </td>
+          <td data-title="'Nombre'" sortable="'data'">
+            {{clothe.data}}
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Liste des équipements en attente - détail par adhérent
+    </div>
+    <div class="table-responsive">
+      <table ng-table="ctrl.getClotheDetailTable()" class="table table-striped b-t b-light">
+        <tr ng-repeat="clothe in $data">
+          <td data-title="'Nom'" sortable="'lastname'">
+            {{clothe.lastname}}
+          </td>
+          <td data-title="'Prénom'" sortable="'firstname'">
+            {{clothe.firstname}}
+          </td>
+          <td data-title="'Collection'" sortable="'collection'">
+            {{clothe.collection}}
+          </td>
+          <td data-title="'Type'" sortable="'type'">
+            {{clothe.type}}
+          </td>
+          <td data-title="'Taille'" sortable="'size'">
+            {{clothe.size}}
+          </td>
+          <td data-title="'Nombre'" sortable="'data'">
+            {{clothe.data}}
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+  </div>
+
+
+
+</div>

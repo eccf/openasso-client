@@ -1,0 +1,27 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Véhicules</h1>
+</div>
+    
+
+<div class="table-responsive"  style="background-color: #fff;">
+    <table ng-table="::vm.vehicleTableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="vehicle in $data">
+          <td data-title="'Libellé'" sortable="'label'">
+              <a ui-sref="app.vehicle.show({ id: vehicle.id })" class="text-info-dker">{{::vehicle.label}}</a>
+          </td>
+          <td data-title="'Immatriculation'" sortable="'registration'">
+            {{::vehicle.registration}}
+          </td>
+          <td data-title="'Marque'" sortable="'vehicle_type.brand'">
+            {{::vehicle.brand}}
+          </td>
+          <td data-title="'Modele'" sortable="'vehicle_size.model'">
+            {{::vehicle.model}}
+          </td>
+          <td data-title="'Actif'" sortable="'active'">
+            {{::vehicle.active ? 'Oui' : 'Non'}}
+          </td>
+        </tr>
+
+      </table>
+</div>

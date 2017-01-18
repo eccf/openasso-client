@@ -1,0 +1,32 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Tailles d'équipements</h1>
+</div>
+
+<div class="wrapper-md">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.message}}</alert>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ clotheSize.id ? 'Modifier' : 'Créer' }} une taille d'équipements : <b>{{ clotheSize.label}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Libellé *</label>
+          <input type="text" class="form-control" ng-model="clotheSize.label" placeholder="Entrez une valeur" required maxlength="255">
+        </div>
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="delete()" ng-show="clotheSize.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.parameter.clothe_size.index"><i class="fa fa-arrow-left"></i>Retour</a>
+            <button ng-click="save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,118 @@
+<div class="aside-wrap">
+  <!-- if you want to use a custom scroll when aside fixed, use the slimScroll
+    <div class="navi-wrap" ui-jq="slimScroll" ui-options="{height:'100%', size:'8px'}">
+  -->
+  <div class="navi-wrap">
+    
+    <!-- nav -->
+    <nav ui-nav class="navi">
+
+			<!-- list -->
+			<ul class="nav">
+				<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+					<span translate="aside.nav.HEADER">Navigation</span>
+				</li>
+				<li ui-sref-active="active">
+					<a ui-sref="app.dashboard.index">
+						<i class="fa fa-dashboard icon text-info-dker"></i>
+						<span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
+					</a>
+				</li>
+				<li ui-sref-active="active">
+					<a ui-sref="app.bike.list">
+						<i class="fa fa-bicycle icon text-info-lter"></i>
+						<span class="font-bold" translate="aside.nav.BIKES">Vélos</span>
+					</a>
+				</li>
+                                <li ui-sref-active="active">
+					<a ui-sref="app.member.list">
+						<i class="fa fa-users icon text-info-dker"></i>
+						<span class="font-bold" translate="aside.nav.MEMBERS">Adhérents</span>
+					</a>
+				</li>
+				
+                
+                <li>
+                  <a href class="auto">      
+                    <span class="pull-right text-muted">
+                      <i class="fa fa-fw fa-angle-right text"></i>
+                      <i class="fa fa-fw fa-angle-down text-active"></i>
+                    </span>
+                    <i class="fa fa-car icon text-info-lter"></i>
+                    <span class="font-bold" translate="aside.nav.VEHICLES">Vehicules</span>
+                  </a>
+                  <ul class="nav nav-sub dk">
+                    <li class="nav-sub-header">
+                      <a href>
+                        <span translate="aside.nav.VEHICLES">Vehicules</span>
+                      </a>
+                    </li>
+                    <li ui-sref-active="active">
+                      <a ui-sref="app.vehicle.list">
+                        <span>Gestion</span>
+                      </a>
+                    </li>
+                    <li ui-sref-active="active">
+                      <a ui-sref="app.vehicle.booking.list">
+                        <span>Réservations</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                
+				<li>
+                  <a href class="auto">      
+                    <span class="pull-right text-muted">
+                      <i class="fa fa-fw fa-angle-right text"></i>
+                      <i class="fa fa-fw fa-angle-down text-active"></i>
+                    </span>
+                    <i class="fa fa-smile-o icon text-info-lter"></i>
+                    <span class="font-bold" translate="aside.nav.VOLUNTEERISM">Bénévolat</span>
+                  </a>
+                  <ul class="nav nav-sub dk">
+                    <li class="nav-sub-header">
+                      <a href>
+                        <span translate="aside.nav.VOLUNTEERISM">Bénévolat</span>
+                      </a>
+                    </li>
+                    <li ui-sref-active="active">
+                      <a ui-sref="app.volunteerism.list">
+                        <span>Saisir temps</span>
+                      </a>
+                    </li>
+                    <li ui-sref-active="active">
+                      <a ui-sref="app.volunteerism.volunteer.list">
+                        <span>Bénévoles</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+				<li class="line dk"></li>
+
+				<li>
+					<a ui-sref="app.common.parameter.list">
+						<i class="fa fa-cogs icon"></i>
+						<span translate="aside.nav.PARAMETERS">Paramètres</span>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="app.stat.index">
+						<i class="fa fa-line-chart icon"></i>
+						<span translate="aside.nav.STATS">Statistiques</span>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="app.docs">
+						<i class="fa fa-question-circle icon"></i>
+						<span translate="aside.nav.HELP">Aide</span>
+					</a>
+				</li>
+			</ul>
+			<!-- / list -->
+
+		</nav>
+    <!-- nav -->
+
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr" data-ng-app="app">
+<head>
+  <meta charset="utf-8" />
+  <title>Mon Association</title>
+  <meta name="description" content="ECCF" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  
+  <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" type="text/css" />
+  <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" type="text/css" />
+  <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css" type="text/css" />
+  
+  <link rel="stylesheet" href="theme/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+  
+  <script src="assets/js/config.js"></script>
+  
+</head>
+<body ng-controller="AppController">
+  
+	<div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
+
+  <!-- jQuery -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/lodash/dist/lodash.min.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <!-- Bootstrap -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+  <!-- Angular -->
+  <script src="bower_components/angular/angular.js"></script>
+  
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script> 
+  <script src="bower_components/ngstorage/ngStorage.js"></script>
+  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+  <script src="bower_components/restangular/dist/restangular.js"></script>
+
+  <!-- bootstrap -->
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <!-- lazyload -->
+  <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+  <!-- translate -->
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+  <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+  <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+  
+  <script src="bower_components/ng-table/ng-table.js"></script>
+  <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
+  <script src="bower_components/angular-ui-select/dist/select.js"></script>
+  
+  
+  <!-- App -->
+  <script src="app/app.js"></script>
+  <script src="app/app.config.js"></script>
+  <script src="app/app.constant.js"></script>
+  <script src="app/app.run.js"></script>
+  <script src="app/app.controller.js"></script>
+
+  <script src="theme/js/services/ui-load.js"></script>
+  <script src="theme/js/filters/fromNow.js"></script>
+  <script src="theme/js/directives/setnganimate.js"></script>
+  <script src="theme/js/directives/ui-butterbar.js"></script>
+  <script src="theme/js/directives/ui-focus.js"></script>
+  <script src="theme/js/directives/ui-fullscreen.js"></script>
+  <script src="theme/js/directives/ui-jq.js"></script>
+  <script src="theme/js/directives/ui-module.js"></script>
+  <script src="theme/js/directives/ui-nav.js"></script>
+  <script src="theme/js/directives/ui-scroll.js"></script>
+  <script src="theme/js/directives/ui-shift.js"></script>
+  <script src="theme/js/directives/ui-toggleclass.js"></script>
+  <script src="theme/js/directives/ui-validate.js"></script>
+  
+  <!-- Services -->
+  
+  
+  <!-- Modules -->
+  <script src="app/dashboard/dashboard.module.js"></script>
+  <script src="app/dashboard/dashboard.config.js"></script>
+  
+  
+  
+  <script src="app/stat/stat.module.js"></script>
+  
+  <script src="app/volunteerism/volunteerism.module.js"></script>
+  <script src="app/volunteerism/volunteerism.config.js"></script>
+  
+  <script src="app/member/member.module.js"></script>
+  <script src="app/member/member.config.js"></script>
+  
+  <script src="app/bike/bike.module.js"></script>
+  <script src="app/bike/bike.config.js"></script>
+  
+  <script src="app/vehicle/vehicle.module.js"></script>
+  <script src="app/vehicle/vehicle.config.js"></script>
+  
+  <script src="app/common/common.module.js"></script>
+  <script src="app/common/common.config.js"></script>
+  <script src="app/common/directives/file-model.directive.js"></script>
+  <script src="app/common/filters/phone.filter.js"></script>
+  <script src="app/common/services/cache.service.js"></script>
+  <script src="app/common/services/table.service.js"></script>
+  <script src="app/common/services/alert.service.js"></script>
+  <script src="app/common/services/date.service.js"></script>
+  <script src="app/common/services/dataservice.service.js"></script>
+
+</body>
+</html>

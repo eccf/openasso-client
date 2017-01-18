@@ -1,0 +1,24 @@
+<div class="row wrapper">
+  <div class="col-sm-12 text-right">
+    <a ui-sref="app.vehicle.maintenance.new({idVehicle: vm.vehicle.id})" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+  </div>
+</div>
+<div class="table-responsive">
+  <table ng-table="vm.maintenancesTable" class="table table-striped b-t b-light">
+    <tr ng-repeat="maintenance in $data">
+      <td data-title="'Date'" sortable="'date'">
+        {{maintenance.date | date : 'dd/MM/yyyy'}}
+      </td>
+      <td data-title="'Type'" sortable="'maintenanceType.label'">
+        {{maintenance.maintenanceType.label}}
+      </td>
+      <td data-title="'Libellé'" sortable="'label'">
+        {{maintenance.label}}
+      </td>
+      <td class="table-column-action">
+        <a ui-sref="app.vehicle.maintenance.edit({idVehicle: vm.vehicle.id, id: maintenance.id})" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-edit"></i>Modifier</a>
+      </td>
+    </tr>
+
+  </table>
+</div>

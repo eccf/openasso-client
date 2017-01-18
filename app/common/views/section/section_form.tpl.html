@@ -1,0 +1,50 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Fédérations</h1>
+</div>
+
+<div class="wrapper-md">
+  <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.section.id ? 'Modifier' : 'Créer' }} une fédération : <b>{{ vm.section.label}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Libellé *</label>
+          <input type="text" class="form-control" ng-model="vm.section.label" placeholder="Entrez une valeur" required maxlength="255">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" ng-model="vm.section.description" placeholder="Entrez une valeur"></textarea>
+        </div>
+        <div class="form-group">
+          <label style="display:block;">Section sportive</label>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="vm.section.sportsSection" uib-btn-radio="true">Oui</label>
+            <label class="btn btn-primary" ng-model="vm.section.sportsSection" uib-btn-radio="false">Non</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="display:block;">Actif</label>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="vm.section.active" uib-btn-radio="true">Oui</label>
+            <label class="btn btn-primary" ng-model="vm.section.active" uib-btn-radio="false">Non</label>
+          </div>
+        </div>
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="vm.remove()" ng-show="vm.section.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.common.section.list"><i class="fa fa-arrow-left"></i>Retour</a>
+            <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </form>
+</div>

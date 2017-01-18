@@ -1,0 +1,40 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Planning des Réservations de véhicules</h1>
+</div>
+
+<div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+    
+<div class="row wrapper" ng-if="vm.hasCurrentPeriod()">
+  <div class="col-sm-12 text-right">
+    <a ui-sref="app.vehicle.booking.new" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+  </div>
+</div>
+
+<div class="table-responsive"  style="background-color: #fff;" ng-if="vm.hasCurrentPeriod()">
+    <table ng-table="::vm.tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="booking in $data">
+          <td data-title="'Evènement'" sortable="'label'">
+            {{booking.label}}
+          </td>
+          <td data-title="'Véhicule'" sortable="'vehicle.label'">
+            {{booking.vehicle.label}}
+          </td>
+          <td data-title="'Date de début'" sortable="'startDate'">
+            {{booking.startDate | date : 'dd/MM/yyyy'}}
+          </td>
+          <td data-title="'Date de fin'" sortable="'endDate'">
+            {{booking.endDate | date : 'dd/MM/yyyy'}}
+          </td>
+          <td data-title="'Type'" sortable="'bookingType.label'">
+            {{booking.bookingType.label}}
+          </td>
+          <td data-title="'Statut'" sortable="'bookingStatus.label'">
+            {{booking.bookingStatus.label}}
+          </td>
+          <td class="table-column-action">
+            <a ui-sref="app.vehicle.booking.edit({ id: booking.id })" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-edit"></i>Modifier</a>
+          </td>
+        </tr>
+
+      </table>
+</div>

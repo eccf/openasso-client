@@ -1,0 +1,131 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Liste des adhérents</h1>
+</div>
+
+<div class="wrapper-md" style="background-color: #fff;">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <input class="form-control m-b" type="text" ng-model="vm.filters.name" placeholder="Nom / Prénom">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <ui-select ng-model="vm.filters.period" theme="bootstrap" title="Choisissez une periode">
+                    <ui-select-match placeholder="Période">{{$select.selected.label}}</ui-select-match>
+                    <ui-select-choices repeat="period.id as period in ::vm.periods">
+                        <div ng-bind-html="period.label"></div>
+                        <small>
+                            du {{period.startDate | date:'dd-MM-yyyy'}} au {{period.endDate | date:'dd-MM-yyyy'}}
+                        </small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">    
+                <ui-select multiple ng-model="vm.filters.groups" theme="bootstrap" close-on-select="false" style="min-height: 34px;" title="Choisissez un groupe">
+                    <ui-select-match placeholder="Groupe">{{$item.label}}</ui-select-match>
+                    <ui-select-choices repeat="group.id as group in ::vm.groups">
+                        <div ng-bind-html="group.label"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">    
+                <ui-select multiple ng-model="vm.filters.subscriptionStates" theme="bootstrap" close-on-select="false" style="min-height: 34px;" title="Choisissez un état d'inscription">
+                    <ui-select-match placeholder="Etat">{{$item.label}}</ui-select-match>
+                    <ui-select-choices repeat="subscriptionState.id as subscriptionState in ::vm.subscriptionStates">
+                        <div ng-bind-html="subscriptionState.label"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-6">
+                <label class="checkbox-inline i-checks">
+                  <input type="checkbox" ng-model="vm.filters.practicing"><i></i> Pratiquant
+                </label>
+
+
+                <label class="checkbox-inline i-checks">
+                  <input type="checkbox" ng-model="vm.filters.volunteer"><i></i> Bénévole
+                </label>
+
+                <label class="checkbox-inline i-checks">
+                  <input type="checkbox" ng-model="vm.filters.teacher"><i></i> Educateur
+                </label>
+
+                <label class="checkbox-inline i-checks">
+                  <input type="checkbox" ng-model="vm.filters.manager"><i></i> Dirigeant
+                </label>
+            </div>
+            <div class="col-md-6 text-right">
+                <button class="btn btn-default btn-sm btn-addon" ng-click="vm.clearFilters()"><i class="fa fa-close"></i> Filtre</button>
+                <button class="btn btn-info btn-sm btn-addon" ng-click="vm.getMembers()"><i class="fa fa-search"></i> Rechercher</button>
+                
+                <a ui-sref="app.member.new" class="btn btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.members.length && vm.load === false">
+        <div class="wrapper-md">Résultats : {{vm.members.length}}</div>
+    </div>  
+</div>
+
+<div class="wrapper-md text-center" ng-if="vm.load === true">
+    <i class="fa fa-refresh fa-spin fa-2x fa-fw v-middle"></i> Chargement...
+</div>
+
+<div class="table-responsive"  style="background-color: #fff;" ng-if="vm.load === false">
+    <table ng-table="vm.memberTableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="member in $data">
+            <td data-title="'Nom'" sortable="'lastname'">
+                <a ui-sref="app.member.show({id: member.id})" class="v-middle thumb-sm m-r">
+                  <img ng-src="{{vm.getAvatar(member)}}" class="img-circle" alt="avatar">
+                </a>
+              <a ui-sref="app.member.show({ id: member.id })" class="text-info-dker">{{::member.lastname | uppercase}} {{::member.firstname}}</a>
+            </td>
+            <td data-title="'Date naissance'" sortable="'birthdate'" style="width:150px; text-align: center;">
+                {{::member.birthdate | date : 'dd/MM/yyyy'}}
+            </td>
+            <td data-title="'Adresse'">
+                {{::member.address}}<br />
+                {{::member.town}} {{::member.zipcode}}
+            </td>
+            <td data-title="'Téléphones'">
+                <span  ng-repeat="phone in ::member.phones" class="label bg-light dker">
+                    {{phone.number | phone}} <span ng-if="phone.type">({{phone.type}})</span>
+                    <br />
+                </span>
+            </td>
+            <td data-title="'Emails'">
+                <span  ng-repeat="email in ::member.emails" class="label bg-light dker">
+                    {{email.address}} <span ng-if="email.type">({{email.type}})</span>
+                    <br />
+                </span>
+            </td>
+            <td data-title="'Période courante'">
+                <div ng-if="::member.currentSubscription">
+                    <a ui-sref="app.member.subscription.edit({idMember: member.id, id: member.currentSubscription.id})">
+                        <span class="label bg-info">{{::member.currentSubscription.group.label}}</span>
+                        <span class="label" ng-class="::member.currentSubscription.subscriptionState.id === 2 ? 'label-success' : 'label-danger'">{{::member.currentSubscription.subscriptionState.label}}</span>
+                    </a>
+                  <br />   
+                  <span class="label" ng-class="::member.currentSubscription.medicalCertificate ? 'label-default' : 'bg-light'">CERT</span>
+                  <span class="label" ng-class="::member.currentSubscription.subscriptionForm ? 'label-default' : 'bg-light'">ADH</span>
+                  <span class="label" ng-class="::member.currentSubscription.licenseForm ? 'label-default' : 'bg-light'">LIC</span>
+                </div>
+                <div ng-if="::member.currentSubscription === null">
+                    <a ui-sref="app.member.subscription.new({idMember: member.id})">
+                        <span class="label bg-danger">Aucune inscription</span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+

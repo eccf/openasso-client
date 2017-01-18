@@ -1,0 +1,8 @@
+/nbproject/
+/dist/
+/node_modules/
+/assets/js/config.js
+/bower_components/
+/.sass-cache
+/vendor/
+/theme/

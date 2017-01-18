@@ -1,0 +1,158 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">{{ vm.subscription.id ? 'Modifier' : 'Créer' }} une location de vélo</h1>
+</div>
+<div style="background:url(assets/img/bike_bg.jpg) center center; background-size:cover">
+    <div class="wrapper-lg bg-white-opacity">
+        <div class="row m-t">
+            <div class="col-sm-7">
+              <a href="" class="thumb-lg pull-left m-r">
+                <img src="assets/img/woman_cyclist.png" class="img-circle" ng-if="vm.member.sexe === 'F'">
+                <img src="assets/img/man_cyclist.png" class="img-circle" ng-if="vm.member.sexe !== 'F'">
+              </a>
+              <div class="clear m-b">
+                <div class="m-b m-t-sm">
+                  <span class="h3 text-black">{{ vm.member.firstname}} {{ vm.member.lastname}}</span>
+                  <small class="m-l">{{ vm.member.birthdate | date : 'dd/MM/yyyy'}}</small>
+                </div>
+                <p class="m-b">
+                  <a href="http://twitter.com/{{vm.member.twitter}}" ng-if="vm.member.twitter" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
+                  <a href="http://fb.com/{{vm.member.facebook}}" ng-if="vm.member.facebook" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
+                </p>
+                <a ui-sref="app.member.show({id: vm.member.id})" class="btn btn-sm btn-danger dker btn-rounded"><i class="fa fa-arrow-left"></i> Profil</a>
+              </div>
+            </div>
+            <div class="col-sm-5">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper-md">
+  <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.bikeRent.id ? 'Modifier' : 'Créer' }} une location de vélo : <b>{{ vm.bikeRent.number}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="b-b b-light m-b-md">
+          <h4 class="font-thin m-b-xs">Contrat de location</h4>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Vélo *</label>
+              <select class="form-control m-b" ng-model="vm.bikeRent.bike" ng-options="bike.id as bike.label for bike in vm.bikes" placeholder="Choisissez parmi la liste">
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Numéro de contrat *</label>
+              <input type="text" class="form-control" ng-model="vm.bikeRent.number" placeholder="Entrez une valeur" required maxlength="255">
+            </div>
+            <div class="form-group">
+              <label>Montant caution</label>
+              <input type="text" class="form-control" ng-model="vm.bikeRent.depositAmount" placeholder="Entrez une valeur" maxlength="255">
+            </div>
+            <div class="form-group">
+              <label>Montant règlement</label>
+              <input type="text" class="form-control" ng-model="vm.bikeRent.settlementAmount" placeholder="Entrez une valeur" maxlength="255">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Periode *</label>
+              <select class="form-control m-b" ng-model="vm.bikeRent.period" ng-options="period.id as period.label for period in vm.periods" placeholder="Choisissez parmi la liste" required>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Date du contrat</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.dateOpen" ng-model="vm.date" datepicker-options="vm.dateOptions" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label>Mode de paiement caution</label>
+              <select class="form-control m-b" ng-model="vm.bikeRent.depositMode" ng-options="payementType for payementType in vm.payementTypes" placeholder="Choisissez parmi la liste">
+                <option value=""></option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mode de paiement règlement</label>
+              <select class="form-control m-b" ng-model="vm.bikeRent.settlementMode" ng-options="payementType for payementType in vm.payementTypes" placeholder="Choisissez parmi la liste">
+                <option value=""></option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Assurance</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.bikeRent.insurance" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.bikeRent.insurance" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="b-b b-light m-b-md">
+              <h4 class="font-thin m-b-xs">Etat des lieux initial</h4>
+            </div>
+            <div class="form-group">
+              <label>Date de début</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.startDateOpen" ng-model="vm.startDate" datepicker-options="vm.dateOptions" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openStartDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label>Observations</label>
+              <textarea class="form-control" ng-model="vm.bikeRent.startObservation" placeholder="Entrez une valeur"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="b-b b-light m-b-md">
+              <h4 class="font-thin m-b-xs">Etat des lieux à la restitution</h4>
+            </div>
+            <div class="form-group">
+              <label>Date de fin</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.endDateOpen" ng-model="vm.endDate" datepicker-options="vm.dateOptions" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openEndDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label>Observations</label>
+              <textarea class="form-control" ng-model="vm.bikeRent.endObservation" placeholder="Entrez une valeur"></textarea>
+            </div>
+          </div>
+        </div>
+    
+        
+        
+        
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="vm.remove()" ng-show="vm.bikeRent.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.member.bike_rent.list({ idMember: vm.member.id })"><i class="fa fa-arrow-left"></i>Retour locations</a>
+        <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+  </form>
+</div>

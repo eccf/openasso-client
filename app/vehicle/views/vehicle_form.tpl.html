@@ -1,0 +1,80 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Véhicules</h1>
+</div>
+
+<div class="wrapper-md">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.message}}</alert>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.vehicle.id ? 'Modifier' : 'Créer' }} une véhicule : <b>{{ vm.vehicle.label}}</b>
+      </div>
+      <div class="panel-body">
+        
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Libellé *</label>
+              <input type="text" class="form-control" ng-model="vm.vehicle.label" placeholder="Entrez une valeur" required maxlength="255">
+            </div>
+            <div class="form-group">
+              <label>Date de mise en circulation</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.buildDateOpen" ng-model="vm.buildDate" datepicker-options="vm.dateOptions" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openBuildDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Marque</label>
+              <input type="text" class="form-control" ng-model="vm.vehicle.brand" placeholder="Entrez une valeur" maxlength="255">
+            </div>
+            
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Immatriculation</label>
+              <input type="text" class="form-control" ng-model="vm.vehicle.registration" placeholder="Entrez une valeur" maxlength="255">
+            </div>
+            <div class="form-group">
+              <label>Date d'achat</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.buyDateOpen" ng-model="vm.buyDate" datepicker-options="vm.dateOptions" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openBuyDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Modele</label>
+              <input type="text" class="form-control" ng-model="vm.vehicle.model" placeholder="Entrez une valeur" maxlength="255">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Descriptions</label>
+          <textarea class="form-control" ng-model="vm.vehicle.description"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Observations</label>
+          <textarea class="form-control" ng-model="vm.vehicle.observation"></textarea>
+        </div>
+        <div class="form-group">
+          <label style="display:block;">Actif</label>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="vm.vehicle.active" uib-btn-radio="true">Oui</label>
+            <label class="btn btn-primary" ng-model="vm.vehicle.active" uib-btn-radio="false">Non</label>
+          </div>
+        </div>
+      </div>
+      <footer class="panel-footer text-right bg-light lter">
+        <a class="btn btn-default btn-addon" ui-sref="app.vehicle.list" ng-hide="vm.vehicle.id"><i class="fa fa-arrow-left"></i>Retour</a>
+        <a class="btn btn-default btn-addon" ui-sref="app.vehicle.show({ id: vm.vehicle.id })" ng-show="vm.vehicle.id"><i class="fa fa-arrow-left"></i>Retour</a>
+        <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+      </footer>
+    </div>
+  </form>
+</div>

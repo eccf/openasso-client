@@ -1,0 +1,31 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Sections</h1>
+</div>
+
+<div class="wrapper-md">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          Liste des fédérations
+        </div>
+        <div class="row wrapper">
+          <div class="col-sm-12 text-right">
+            <a ui-sref="app.common.section.new" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table ng-table="::vm.tableParams" class="table table-striped b-t b-light">
+            <tr ng-repeat="section in $data">
+              <td data-title="'Libellé'" sortable="'label'">
+                {{::section.label}}
+              </td>
+              <td data-title="'Actif'" sortable="'active'">
+                {{ ::section.active ? 'Oui' : 'Non' }}
+              </td>
+              <td class="table-column-action">
+                <a ui-sref="app.common.section.edit({ id: section.id })" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-edit"></i>Modifier</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+</div>

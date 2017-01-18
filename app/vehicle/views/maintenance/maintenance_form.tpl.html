@@ -1,0 +1,56 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Vehicule <b>{{vm.vehicle.label}}</b> - Maintenances</h1>
+</div>
+
+<div class="wrapper-md">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}">{{alert.message}}</alert>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.maintenance.id ? 'Modifier' : 'Créer' }} une opération de maintenance : <b>{{ vm.maintenance.label}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Libellé *</label>
+          <input type="text" class="form-control" ng-model="vm.maintenance.label" placeholder="Entrez une valeur" required maxlength="255">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Type</label>
+              <select class="form-control m-b" ng-model="vm.maintenance.maintenanceType" ng-options="maintenanceType.id as maintenanceType.label for maintenanceType in vm.maintenanceTypes" placeholder="Choisissez parmi la liste" required>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Date</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.dateOpen" ng-model="vm.date" datepicker-options="vm.dateOptions" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Observations</label>
+          <textarea class="form-control" ng-model="vm.maintenance.description" placeholder="Entrez une valeur"></textarea>
+        </div>
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="vm.remove()" ng-show="vm.maintenance.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.vehicle.show({ id: vm.vehicle.id })"><i class="fa fa-arrow-left"></i>Retour</a>
+            <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </form>
+</div>

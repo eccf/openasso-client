@@ -1,0 +1,45 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Liste des bénévoles de l'association</h1>
+</div>
+
+<div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+    
+<div class="row wrapper" ng-if="vm.hasCurrentPeriod()">
+  <div class="col-sm-12 text-right">
+    <a ui-sref="app.member.new" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+  </div>
+</div>
+
+<div class="table-responsive"  style="background-color: #fff;" ng-if="vm.hasCurrentPeriod()">
+    <table ng-table="::vm.tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="volunteer in $data">
+          <td data-title="'Nom'" sortable="'lastname'">
+                <i class="fa" ng-class="::vm.volunteer.sexe === 'F' ? 'fa-female' : 'fa-male'"></i>
+                <a ui-sref="app.member.show({ id: volunteer.id })" class="text-info-dker">{{::volunteer.lastname | uppercase}} {{::volunteer.firstname}}</a>
+            </td>
+            <td data-title="'Date naissance'" sortable="'birthdate'" style="width:150px; text-align: center;">
+                {{::volunteer.birthdate | date : 'dd/MM/yyyy'}}
+            </td>
+            <td data-title="'Adresse'">
+                {{::volunteer.address}}<br />
+                {{::volunteer.town}} {{::volunteer.zipcode}}
+            </td>
+            <td data-title="'Téléphones'">
+                <span  ng-repeat="phone in ::volunteer.phones" class="label bg-light dker">
+                    {{phone.number | phone}} <span ng-if="phone.type">({{phone.type}})</span>
+                    <br />
+                </span>
+            </td>
+            <td data-title="'Emails'">
+                <span  ng-repeat="email in ::volunteer.emails" class="label bg-light dker">
+                    {{email.address}} <span ng-if="email.type">({{email.type}})</span>
+                    <br />
+                </span>
+            </td>
+            <td data-title="'Numéro de permis'">
+                {{::volunteer.driverLicense}}
+            </td>
+        </tr>
+
+      </table>
+</div>

@@ -1,0 +1,59 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Vélos</h1>
+</div>
+
+<div class="wrapper-md">
+  <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.bike.id ? 'Modifier' : 'Créer' }} une vélo : <b>{{ vm.bike.label}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Libellé *</label>
+          <input type="text" class="form-control" ng-model="vm.bike.label" placeholder="Entrez une valeur" required maxlength="255">
+        </div>
+        <div class="form-group">
+          <label>Numéro de série</label>
+          <input type="text" class="form-control" ng-model="vm.bike.number" placeholder="Entrez une valeur" maxlength="255">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Type de vélo</label>
+              <select ng-model="vm.bike.bike_type" class="form-control m-b" ng-options="bikeType.id as bikeType.label for bikeType in vm.bikeTypes" placeholder="Choisissez parmi la liste">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label">Taille de vélo</label>
+              <select ng-model="vm.bike.bike_size" class="form-control m-b" ng-options="bikeSize.id as bikeSize.label for bikeSize in vm.bikeSizes" placeholder="Choisissez parmi la liste">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="display:block;">Actif</label>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="vm.bike.active" uib-btn-radio="true">Oui</label>
+            <label class="btn btn-primary" ng-model="vm.bike.active" uib-btn-radio="false">Non</label>
+          </div>
+        </div>
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="vm.remove()" ng-show="vm.bike.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.bike.list"><i class="fa fa-arrow-left"></i>Retour</a>
+            <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </form>
+</div>

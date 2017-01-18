@@ -1,0 +1,150 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">{{ vm.subscription.id ? 'Modifier' : 'Créer' }} une inscription</h1>
+</div>
+<div style="background:url(assets/img/subscription_bg.jpg) center center; background-size:cover">
+    <div class="wrapper-lg bg-white-opacity">
+        <div class="row m-t">
+            <div class="col-sm-7">
+              <a href="" class="thumb-lg pull-left m-r">
+                <img src="assets/img/woman_cyclist.png" class="img-circle" ng-if="vm.member.sexe === 'F'">
+                <img src="assets/img/man_cyclist.png" class="img-circle" ng-if="vm.member.sexe !== 'F'">
+              </a>
+              <div class="clear m-b">
+                <div class="m-b m-t-sm">
+                  <span class="h3 text-black">{{ vm.member.firstname}} {{ vm.member.lastname}}</span>
+                  <small class="m-l">{{ vm.member.birthdate | date : 'dd/MM/yyyy'}}</small>
+                </div>
+                <p class="m-b">
+                  <a href="http://twitter.com/{{vm.member.twitter}}" ng-if="vm.member.twitter" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
+                  <a href="http://fb.com/{{vm.member.facebook}}" ng-if="vm.member.facebook" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
+                </p>
+                <a ui-sref="app.member.show({id: vm.member.id})" class="btn btn-sm btn-danger dker btn-rounded"><i class="fa fa-arrow-left"></i> Profil</a>
+              </div>
+            </div>
+            <div class="col-sm-5">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper-md">
+  <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.subscription.id ? 'Modifier' : 'Créer' }} une inscription :
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Periode *</label>
+              <select class="form-control m-b" ng-model="vm.subscription.period" ng-options="period.id as period.label for period in vm.periods" placeholder="Choisissez parmi la liste" required>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label style="display:block;">Section principale</label>
+              <select class="form-control m-b" ng-model="vm.subscription.section" ng-options="section.id as section.label for section in vm.sections" placeholder="Choisissez parmi la liste">
+                <option value=""></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label style="display:block;">Groupe principal</label>
+              <select class="form-control m-b" ng-model="vm.subscription.group" ng-options="group.id as group.label for group in vm.groups" placeholder="Choisissez parmi la liste">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Certificat médical</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.medicalCertificate" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.medicalCertificate" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Formulaire d'adhésion</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.subscriptionForm" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.subscriptionForm" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Formulaire de demande de licence</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.licenseForm" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.licenseForm" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea class="form-control" ng-model="vm.subscription.note"></textarea>
+        </div>
+        <div class="form-group">
+          <label style="display:block;">Pratiquant</label>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="true">Oui</label>
+            <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="false">Non</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Bénévole</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.volunteer" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.volunteer" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Educateur</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.teacher" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.teacher" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Niveau</label>
+              <select class="form-control m-b" ng-model="vm.subscription.level" ng-options="level.id as level.label for level in vm.levels" placeholder="Choisissez parmi la liste">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Dirigeant</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.manager" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.manager" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Salarié</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.salaried" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.salaried" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Etat de l'inscription</label>
+              <select class="form-control m-b" ng-model="vm.subscription.subscriptionState" ng-options="subscriptionState.id as subscriptionState.label for subscriptionState in vm.subscriptionStates" placeholder="Choisissez parmi la liste">
+              </select>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <footer class="panel-footer text-right bg-light lter">
+        <a class="btn btn-default btn-addon" ui-sref="app.member.subscription.list({idMember: vm.member.id})"><i class="fa fa-arrow-left"></i>Retour adhésions</a>
+        <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+      </footer>
+    </div>
+  </form>
+</div>

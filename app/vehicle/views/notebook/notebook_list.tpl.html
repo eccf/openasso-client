@@ -1,0 +1,27 @@
+<div class="row wrapper">
+  <div class="col-sm-12 text-right">
+    <a ui-sref="app.vehicle.notebook.new({idVehicle: vm.vehicle.id})" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+  </div>
+</div>
+<div class="table-responsive">
+  <table ng-table="::vm.notebooksTable" class="table table-striped b-t b-light">
+    <tr ng-repeat="notebook in $data">
+      <td data-title="'Date'" sortable="'date'">
+        {{::notebook.date | date : 'dd/MM/yyyy'}}
+      </td>
+      <td data-title="'Libellé'" sortable="'label'">
+        {{::notebook.label}}
+      </td>
+      <td data-title="'Km départ'" sortable="'startKilometers'">
+        {{::notebook.startKilometers}}
+      </td>
+      <td data-title="'Km retour'" sortable="'endKilometers'">
+        {{::notebook.endKilometers}}
+      </td>
+      <td class="table-column-action">
+        <a ui-sref="app.vehicle.notebook.edit({idVehicle: vm.vehicle.id, id: notebook.id})" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-edit"></i>Modifier</a>
+      </td>
+    </tr>
+
+  </table>
+</div>

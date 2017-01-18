@@ -1,0 +1,63 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Périodes</h1>
+</div>
+
+<div class="wrapper-md">
+  <div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.period.id ? 'Modifier' : 'Créer' }} une période : <b>{{ vm.period.label}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Libellé *</label>
+          <input type="text" class="form-control" ng-model="vm.period.label" placeholder="Entrez une valeur" required maxlength="255">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Date de début *</label>
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.startDateOpen" ng-model="vm.startDate" datepicker-options="vm.dateOptions" ng-required="true" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.openStartDate($event)"><i class="fa fa-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <label>Date de fin *</label>
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.endDateOpen" ng-model="vm.endDate" datepicker-options="vm.dateOptions" ng-required="true" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="vm.openEndDate($event)"><i class="fa fa-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" ng-model="vm.period.description" placeholder="Entrez une valeur"></textarea>
+        </div>
+        <div class="form-group">
+          <label style="display:block;">Période courante</label>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="vm.period.current" uib-btn-radio="true">Oui</label>
+            <label class="btn btn-primary" ng-model="vm.period.current" uib-btn-radio="false">Non</label>
+          </div>
+        </div>
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="vm.remove()" ng-show="vm.period.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.common.period.list"><i class="fa fa-arrow-left"></i>Retour</a>
+            <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </form>
+</div>

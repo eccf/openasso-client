@@ -1,0 +1,204 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Profil de l'adhérent</h1>
+</div>
+<div style="background:url(assets/img/member_bg.jpg) center center; background-size:cover">
+    <div class="wrapper-lg bg-white-opacity">
+        <div class="row m-t">
+            <div class="col-sm-7">
+              <a ui-sref="app.member.photo({id: vm.member.id})" class="thumb-lg pull-left m-r">
+                <img src="{{vm.getAvatar()}}" class="img-circle" alt="avatar">
+              </a>
+              <div class="clear m-b">
+                <div class="m-b m-t-sm">
+                  <span class="h3 text-black">{{ vm.member.firstname}} {{ vm.member.lastname}}</span>
+                  <small class="m-l">{{ vm.member.birthdate | date : 'dd/MM/yyyy'}}</small>
+                </div>
+                <p class="m-b">
+                  <a href="http://twitter.com/{{vm.member.twitter}}" ng-if="vm.member.twitter" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
+                  <a href="http://fb.com/{{vm.member.facebook}}" ng-if="vm.member.facebook" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
+                </p>
+                <a ui-sref="app.member.edit({id: vm.member.id})" class="btn btn-sm btn-danger dker btn-rounded">Modifier</a>
+              </div>
+            </div>
+            <div class="col-sm-5">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper-md">
+    <div class="row">
+        <div class="col-md-6">
+            
+            <div class="row row-sm text-center">
+                
+                <div class="col-xs-12 m-b-md" ng-if="vm.member.town">
+                  <div class="r bg-light dker item hbox no-border">
+                    <div class="col w-xs v-middle hidden-md">
+                        <i class="fa fa-home fa-3x"></i>
+                    </div>
+                    <div class="col dk padder-v r-r">
+                      <div class="dk font-thin h1"><span>{{vm.member.town}}</span></div>
+                      <span class="">{{vm.member.address}} {{vm.member.zipcode}} {{vm.member.town}}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-xs-6" ng-if="vm.member.phones && vm.member.phones.length > 0">
+                    <div class="panel padder-v item">
+                        <div class="h1 text-info font-thin h1"><i class="fa fa-phone"></i></div>
+                        <div class="text-muted text-sm" ng-repeat="phone in vm.member.phones">
+                            {{phone.number}}
+                            <span ng-if="phone.type">({{phone.type}})</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6" ng-if="vm.member.emails && vm.member.emails.length > 0">
+                    <div class="panel padder-v item">
+                        <div class="text-info font-thin h1 block"><i class="fa fa-envelope"></i></div>
+                        <div class="text-muted text-xs" ng-repeat="email in vm.member.emails">
+                            {{email.address}}
+                            <span ng-if="email.type">({{email.type}})</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel no-border" ng-if="vm.member.contact">
+                <div class="panel-heading wrapper b-b b-light">
+                  <h4 class="font-thin m-t-none m-b-none">Contact - Représentant légal</h4>              
+                </div>
+                <ul class="list-group list-group-lg m-b-none">
+                  <li class="list-group-item">
+                    <a href class="thumb-sm m-r">
+                        <i class="fa fa-user fa-2x v-middle"></i>
+                    </a>
+                    <a href>{{vm.member.contact}}</a>
+                  </li>
+                </ul>
+            </div>
+            
+            <div class="panel no-border" ng-if="vm.licenses && vm.licenses.length > 0">
+                <div class="panel-heading wrapper b-b b-light">
+                  <h4 class="font-thin m-t-none m-b-none">Licences</h4>              
+                </div>
+                <ul class="list-group list-group-lg m-b-none">
+                  <li class="list-group-item" ng-repeat="license in vm.licenses">
+                    <a href class="thumb-sm m-r">
+                        <i class="fa fa-id-card-o fa-2x v-middle"></i>
+                    </a>
+                    <span ng-switch on="license.federation.id">
+                        <span class="pull-right label bg-warning inline m-t-sm" ng-switch-when="1">{{license.federation.label}}</span>
+                        <span class="pull-right label bg-success inline m-t-sm" ng-switch-when="2">{{license.federation.label}}</span>
+                        <span class="pull-right label bg-primary inline m-t-sm" ng-switch-when="3">{{license.federation.label}}</span>
+                    </span>
+                    <a ui-sref="app.member.license.edit({idMember: vm.member.id, id: license.id})">{{license.number}}</a>
+                  </li>
+                </ul>
+                <div class="panel-footer">
+                    <a ui-sref="app.member.license.new({idMember: vm.member.id})" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+                </div>
+            </div>
+            
+            <div class="panel no-border" ng-if="vm.degrees && vm.degrees.length > 0">
+                <div class="panel-heading wrapper b-b b-light">
+                  <h4 class="font-thin m-t-none m-b-none text-muted">Diplômes</h4>              
+                </div>
+                <ul class="list-group list-group-lg m-b-none">
+                  <li class="list-group-item" ng-repeat="degree in vm.degrees">
+                    <a href class="thumb-sm m-r">
+                        <i class="fa fa-graduation-cap fa-2x v-middle"></i>
+                    </a>
+                    <span class="pull-right label bg-light inline m-t-sm" ng-if="degree.degreeType">{{degree.degreeType.label}}</span>
+                    <a ui-sref="app.member.degree.edit({idMember: vm.member.id, id: degree.id})">{{degree.label}}</a>
+                  </li>
+                </ul>
+                <div class="panel-footer">
+                    <a ui-sref="app.member.degree.new({idMember: vm.member.id})" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-6">
+            <div class="panel b-a">
+                <div class="panel-heading no-border bg-info dk">          
+                    <span class="text-lt">Adhésion</span>
+                </div>
+                
+                <div class="item m-l-n-xxs m-r-n-xxs">
+                    <div class="top text-left padder-lg m-t-md w-full">
+                        <a ng-if="vm.member.currentSubscription" ui-sref="app.member.subscription.list({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info pull-right m-r"><i class="fa fa-list-ul"></i></a>
+                        <a ng-if="vm.member.currentSubscription" ui-sref="app.member.subscription.edit({idMember: vm.member.id, id: vm.member.currentSubscription.id})" class="btn btn-sm btn-icon btn-rounded btn-info m-l"><i class="fa fa-edit"></i></a>
+                        <a ng-if="!vm.member.currentSubscription" ui-sref="app.member.subscription.new({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info m-l"><i class="fa fa-plus"></i></a>
+
+                    </div>
+                    <div class="bottom wrapper bg-gd-dk text-white">            
+                      <div class="text-u-c h3 m-b-sm" ng-if="!vm.member.currentSubscription">Aucune adhésion</div>
+                      <div class="text-u-c h3 m-b-sm" ng-if="vm.member.currentSubscription">{{vm.member.currentSubscription.group.label}}</div>
+                      <div class="text-info-lter" ng-if="vm.member.currentSubscription">{{vm.member.currentSubscription.section.label}}</div>
+                    </div>
+                    <img src="assets/img/subscription_bg.jpg" class="img-full" style="min-height: 130px;">
+                </div>
+
+                <div class="hbox text-center b-b b-light text-sm" ng-if="vm.member.currentSubscription">          
+                    <a href class="col padder-v text-muted b-r b-light">
+                        <i ng-class="vm.member.currentSubscription.medicalCertificate ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+                        <span>Certificat médical</span>
+                    </a>
+                    <a href class="col padder-v text-muted b-r b-light">
+                        <i ng-class="vm.member.currentSubscription.licenseForm ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+                        <span>Licence</span>
+                    </a>
+                    <a href class="col padder-v text-muted">
+                        <i ng-class="vm.member.currentSubscription.subscriptionForm ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+                        <span>Bulletin adhésion</span>
+                    </a>
+                </div>
+                <div class="hbox text-center b-b b-light text-sm" ng-if="vm.member.currentSubscription.subscriptionState">
+                    <a href class="col padder-v text-muted">
+                      <span class="label" style="font-size:100%;" ng-class="vm.member.currentSubscription.subscriptionState.label === 'Complet' ? 'label-success' : 'label-danger'">{{vm.member.currentSubscription.subscriptionState.label}}</span>
+                    </a>
+                </div>
+                <div class="hbox text-center text-sm" ng-if="vm.member.currentSubscription">          
+                    <a href class="col padder-v text-muted b-r b-light" ng-if="vm.member.currentSubscription.practicing">
+                      <span>Pratiquant</span>
+                    </a>
+                    <a href class="col padder-v text-muted b-r b-light" ng-if="vm.member.currentSubscription.volunteer">
+                      <span>Bénévole</span>
+                    </a>
+                    <a href class="col padder-v text-muted b-r b-light" ng-if="vm.member.currentSubscription.teacher">
+                      <span>Educateur</span>
+                    </a>
+                    <a href class="col padder-v text-muted" ng-if="vm.member.currentSubscription.manager">
+                      <span>Dirigeant</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="panel b-a">
+            <div class="panel-heading bg-info dk no-border wrapper-lg">
+                <a ui-sref="app.member.bike_rent.list({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info pull-right m-r"><i class="fa fa-list-ul"></i></a>
+                <a ui-sref="app.member.bike_rent.new({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info m-l"><i class="fa fa-plus"></i></a>
+            </div>
+            <div class="text-center m-b clearfix">
+                <div class="thumb-lg avatar m-t-n-xxl">
+                    <img src="assets/img/bike.jpg" alt="Vélo" class="b b-3x b-white">
+                    <div class="h4 font-thin m-t-sm">
+                        {{ vm.bikeRents && vm.bikeRents.length > 0 ? 'Locations' : 'Aucune location' }}
+                    </div>
+                </div>
+            </div>
+            <div class="hbox text-center b-t b-light">          
+              <a ui-sref="app.member.bike_rent.edit({idMember: vm.member.id, id: bikeRent.id})" ng-class="{'b-r': !$last}" class="col padder-v text-muted b-light" ng-repeat="bikeRent in vm.bikeRents">
+                <div class="h4" ng-if="bikeRent.bike">{{bikeRent.bike.label}}</div>
+                <span ng-if="bikeRent.bike.bike_type">{{bikeRent.bike.bike_type.label}}</span>
+              </a>
+            </div>
+          </div>
+            
+        </div>
+        
+    </div>
+</div>

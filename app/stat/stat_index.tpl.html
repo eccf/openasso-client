@@ -1,0 +1,406 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">Statistiques sur la période courante</h1>
+          <small class="text-muted">Page d'accueil</small>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md">
+      <!-- stats -->
+      <div class="row text-center">
+        <div class="col-xs-12 m-b-md">
+              <div class="r bg-success dker item hbox no-border">
+                <div class="col dk padder-v r-r">
+                  <div class="text-white font-thin h1">{{currentPeriod.label}}</div>
+                  <span>Période courante</span>
+                </div>
+              </div>
+            </div>
+        <div class="col-md-6">
+          <div class="row row-sm">
+            <div class="col-xs-6">
+              <div class="panel padder-v bg-danger item">
+                <div class="h1 font-thin">{{result.countActiveGroup}}</div>
+                <span>Groupes actifs</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v bg-primary item">
+                <div class="h1 font-thin">{{result.countActiveSection}}</div>
+                <span>Sections actives</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v bg-info item">
+                <div class="h1 font-thin">{{result.countActiveBike}}</div>
+                <span>Vélos actifs</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-warning item text-dark">
+                <div class="font-thin h1">{{result.countActiveVehicle}}</div>
+                <span>Véhicules</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row row-sm">
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentSubscription}}</div>
+                <span>Inscrits</span>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentClermontSubscription}}</div>
+                <span>Inscrits clermontois</span>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentSportiveSubscription}}</div>
+                <span>Inscrits sections sportives</span>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentSportiveClermontSubscription}}</div>
+                <span>Inscrits sections sportives clermontois</span>
+              </div>
+            </div>
+            
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentPracticingSubscription}}</div>
+                <span>Inscrits pratiquants</span>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentPracticingClermontSubscription}}</div>
+                <span>Inscrits pratiquants clermontois</span>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentPracticingSportiveSubscription}}</div>
+                <span>Inscrits pratiquants sections sportives</span>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countCurrentPracticingSportiveClermontSubscription}}</div>
+                <span>Inscrits pratiquants sections sportives clermontois</span>
+              </div>
+            </div>
+            
+            
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countVolunteerSubscription}}</div>
+                <span>Bénévoles</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-light item text-dark">
+                <div class="font-thin h1">{{result.countVolunteerClermontSubscription}}</div>
+                <span>Bénévoles clermontois</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{result.countManagerSubscription}}</div>
+                <span>Dirigeants</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-light item text-dark">
+                <div class="font-thin h1">{{result.countManagerClermontSubscription}}</div>
+                <span>Dirigeants clermontois</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / stats -->
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Répartition des inscriptions par groupes</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                {{result.countCurrentSubscriptionByGroup}},
+                {
+                  series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                  colors: ['{{app.color.primary}}','{{app.color.info}}','{{app.color.success}}','{{app.color.warning}}','{{app.color.danger}}'],
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                  tooltip: true,
+                  tooltipOpts: { content: '%s: %p.0%' }
+                }
+              " style="height:240px"></div>
+              <table class="table table-striped m-b-none">
+                <thead>
+                  <tr>
+                    <th>Libellé</th>
+                    <th>Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="result.countCurrentSubscriptionByGroup.length === 0">
+                    <td>Aucun résultat</td>
+                  </tr>
+                  <tr ng-repeat="item in result.countCurrentSubscriptionByGroup">
+                    <td>{{item.label}}</td>
+                    <td>{{item.data}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Répartition des inscriptions par section</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                {{result.countCurrentSubscriptionBySection}},
+                {
+                  series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                  colors: ['{{app.color.primary}}','{{app.color.info}}','{{app.color.success}}','{{app.color.warning}}','{{app.color.danger}}'],
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                  tooltip: true,
+                  tooltipOpts: { content: '%s: %p.0%' }
+                }
+              " style="height:240px"></div>
+              <table class="table table-striped m-b-none">
+                <thead>
+                  <tr>
+                    <th>Libellé</th>
+                    <th>Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="result.countCurrentSubscriptionBySection.length === 0">
+                    <td>Aucun résultat</td>
+                  </tr>
+                  <tr ng-repeat="item in result.countCurrentSubscriptionBySection">
+                    <td>{{item.label}}</td>
+                    <td>{{item.data}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Répartition des inscriptions par état</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                {{result.countCurrentSubscriptionByState}},
+                {
+                  series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                  colors: ['{{app.color.primary}}','{{app.color.info}}','{{app.color.success}}','{{app.color.warning}}','{{app.color.danger}}'],
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                  tooltip: true,
+                  tooltipOpts: { content: '%s: %p.0%' }
+                }
+              " style="height:240px"></div>
+              <table class="table table-striped m-b-none">
+                <thead>
+                  <tr>
+                    <th>Libellé</th>
+                    <th>Nombre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-if="result.countCurrentSubscriptionByState.length === 0">
+                    <td>Aucun résultat</td>
+                  </tr>
+                  <tr ng-repeat="item in result.countCurrentSubscriptionByState">
+                    <td>{{item.label}}</td>
+                    <td>{{item.data}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Evolution du nombre d'adhérents par période</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                [
+                  { data: {{periodSubscription}}, points: { show: true, radius: 6}, splines: { show: true, tension: 0.45, lineWidth: 5, fill: 0 } }
+                ], 
+                {
+                  colors: ['{{app.color.info}}'],
+                  series: { shadowSize: 3 },
+                  xaxis:{ 
+                    font: { color: '#ccc' },
+                    position: 'bottom',
+                    ticks: {{periodSubscriptionTicks}}
+                  },
+                  yaxis:{ font: { color: '#ccc' } },
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
+                  tooltip: true,
+                  tooltipOpts: { content: '%y.0 adhérents',  defaultTheme: false, shifts: { x: 0, y: 20 } }
+                }
+              " style="height:240px" >
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Order bar</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                {{periodSubscriptionBySection}},
+                {
+                  series: {
+                    stack: 0,
+                    lines: {
+                      show: false,
+                      fill: true,
+                      steps: false
+                    },
+                    bars: {
+                      show: true,
+                      barWidth: 0.6
+                    }
+                  }, 
+                  colors: ['{{app.color.info}}', '{{app.color.success}}', '{{app.color.primary}}'],
+                  xaxis:{ 
+                    font: { color: '#ccc' }, 
+                    ticks: {{periodSubscriptionBySectionTicks}}
+                  },
+                  yaxis:{ font: { color: '#ccc' } },
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },                
+                  tooltip: true
+                }
+              " style="height:240px"></div>
+            </div>                  
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="row">
+        
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Catégorie moins de 12 ans</div>
+            <table class="table table-striped m-b-none">
+              <thead>
+                <tr>
+                  <th>Niveau</th>
+                  <th>Nombre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-if="result.countSubscriptionByLevelByAge12.length === 0">
+                  <td colspan="2">Aucun résultat</td>
+                </tr>
+                <tr ng-repeat="item in result.countSubscriptionByLevelByAge12">
+                  <td>{{item.levelLabel}}</td>
+                  <td>{{item.data}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Catégorie 12-18 ans</div>
+            <table class="table table-striped m-b-none">
+              <thead>
+                <tr>
+                  <th>Niveau</th>
+                  <th>Nombre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-if="result.countSubscriptionByLevelByAge1218.length === 0">
+                  <td colspan="2">Aucun résultat</td>
+                </tr>
+                <tr ng-repeat="item in result.countSubscriptionByLevelByAge1218">
+                  <td>{{item.levelLabel}}</td>
+                  <td>{{item.data}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Catégorie 19-25 ans</div>
+            <table class="table table-striped m-b-none">
+              <thead>
+                <tr>
+                  <th>Niveau</th>
+                  <th>Nombre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-if="result.countSubscriptionByLevelByAge1925.length === 0">
+                  <td colspan="2">Aucun résultat</td>
+                </tr>
+                <tr ng-repeat="item in result.countSubscriptionByLevelByAge1925">
+                  <td>{{item.levelLabel}}</td>
+                  <td>{{item.data}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Catégorie plus de 25 ans</div>
+            <table class="table table-striped m-b-none">
+              <thead>
+                <tr>
+                  <th>Niveau</th>
+                  <th>Nombre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-if="result.countSubscriptionByLevelByAge25.length === 0">
+                  <td colspan="2">Aucun résultat</td>
+                </tr>
+                <tr ng-repeat="item in result.countSubscriptionByLevelByAge25">
+                  <td>{{item.levelLabel}}</td>
+                  <td>{{item.data}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        
+      </div>
+      
+    
+    </div>
+  </div>
+  <!-- / main -->
+  
+</div>

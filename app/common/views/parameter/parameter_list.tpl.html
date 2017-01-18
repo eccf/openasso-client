@@ -1,0 +1,166 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Paramètres</h1>
+</div>
+
+<div class="wrapper-md">
+  <div class="row">
+    <div class="col-sm-6 connected" ui-jq="sortable" ui-options="{items:'.panel', handle:'.panel-heading', connectWith:'.connected'}">
+           
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Structure de l'association
+        </div>
+        <ul class="list-group alt">
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.common.section.list">Sections</a></div>
+                <small class="text-muted">Gestion des sections</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.common.period.list">Périodes</a></div>
+                <small class="text-muted">Définition des périodes - exercices</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.common.federation.list">Fédérations</a></div>
+                <small class="text-muted">Gestion du référentiel des fédérations</small>
+              </div>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Adhérent
+        </div>
+        <ul class="list-group alt">
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.adherent.degree_type.list">Type de diplômes</a></div>
+                <small class="text-muted">Référentiel des types de diplômes</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.adherent.level.list">Niveaux</a></div>
+                <small class="text-muted">Référentiel des niveaux</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.adherent.group.list">Groupes</a></div>
+                <small class="text-muted">Gestion des groupes</small>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+    </div>
+    <div class="col-sm-6 connected" ui-jq="sortable" ui-options="{items:'.panel', handle:'.panel-heading', connectWith:'.connected'}">
+      
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          Equipements
+        </div>
+        <ul class="list-group alt">
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.parameter.clothe_model.index">Collection</a></div>
+                <small class="text-muted">Gestion des collections, correspond généralement à la commande</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.parameter.clothe_type.index">Types</a></div>
+                <small class="text-muted">Gestion du référentiel des types d'équipements (maillots, cuissards, etc)</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.parameter.clothe_size.index">Tailles</a></div>
+                <small class="text-muted">Gestion du référentiel des tailles d'équipements</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.parameter.clothe_state.index">Statuts des demandes d'équipements</a></div>
+                <small class="text-muted">Gestion du référentiel des statuts de demande d'équipements</small>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          Vélos
+        </div>
+        <ul class="list-group alt">
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.bike_type.list">Types</a></div>
+                <small class="text-muted">Gestion du référentiel des types de vélo</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.bike_size.list">Tailles</a></div>
+                <small class="text-muted">Gestion du référentiel des tailles de vélo</small>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          Véhicules
+        </div>
+        <ul class="list-group alt">
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.vehicle.maintenance_type.list">Opérations de maintenance</a></div>
+                <small class="text-muted">Gestion des types d'opérations de maintenance</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="media">
+              <div class="media-body">
+                <div><a ui-sref="app.vehicle.booking_type.list">Type de réservation</a></div>
+                <small class="text-muted">Gestion des types de réservation de véhicule</small>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

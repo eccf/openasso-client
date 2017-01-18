@@ -1,0 +1,82 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Planning des réservations</h1>
+</div>
+
+<div class="wrapper-md">
+  <alert ng-repeat="alert in vm.alerts" type="{{alert.type}}">{{alert.message}}</alert>
+  
+  <form role="form" name="form" class="form-validation">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{ vm.booking.id ? 'Modifier' : 'Créer' }} une réservation de véhicle : <b>{{ vm.booking.label}}</b>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            
+            <div class="form-group">
+              <label>Date de début *</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.startDateOpen" ng-model="vm.startDate" datepicker-options="vm.dateOptions" required/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openStartDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label>Libellé *</label>
+              <input type="text" class="form-control" ng-model="vm.booking.label" placeholder="Entrez une valeur" maxlength="255" required>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Type</label>
+              <select class="form-control m-b" ng-model="vm.booking.bookingType" ng-options="bookingType.id as bookingType.label for bookingType in vm.bookingTypes" placeholder="Choisissez parmi la liste">
+              </select>
+            </div>
+            
+          </div>
+          <div class="col-md-6">
+           
+            
+            <div class="form-group">
+              <label>Date de fin</label>
+              <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" is-open="vm.endDateOpen" ng-model="vm.endDate" datepicker-options="vm.dateOptions" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="vm.openEndDate($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+            
+            <div class="form-group">
+              <label style="display:block;">Véhicule *</label>
+              <select class="form-control m-b" ng-model="vm.booking.vehicle" ng-options="vehicle.id as vehicle.label for vehicle in vm.vehicles" placeholder="Choisissez parmi la liste" required>
+              </select>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Statut</label>
+              <select class="form-control m-b" ng-model="vm.booking.bookingStatus" ng-options="bookingStatus.id as bookingStatus.label for bookingStatus in vm.bookingStatus" placeholder="Choisissez parmi la liste">
+              </select>
+            </div>
+            
+          </div>
+          
+        </div>
+        <div class="form-group">
+          <label>Descriptions - Commentaires</label>
+          <textarea class="form-control" ng-model="vm.booking.description"></textarea>
+        </div>
+      </div>
+      <footer class="panel-footer bg-light lter">
+        <div class="row">
+          <div class="col-md-4">
+            <button ng-click="vm.remove()" ng-show="vm.booking.id" class="btn btn-danger btn-addon m-b-xs"><i class="fa fa-close"></i>Supprimer</button>
+          </div>
+          <div class="col-md-8 text-right">
+            <a class="btn btn-default btn-addon" ui-sref="app.vehicle.booking.list"><i class="fa fa-arrow-left"></i>Retour</a>
+            <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,75 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Parc à vélo</h1>
+</div>
+
+<div class="wrapper-md" style="background-color: #fff;">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <input class="form-control m-b" type="text" ng-model="::vm.filters.name" placeholder="Nom / Numéro de série">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">    
+                <ui-select multiple ng-model="vm.filters.bikeTypes" theme="bootstrap" close-on-select="false" style="min-height: 34px;" title="Choisissez un type de vélo">
+                    <ui-select-match placeholder="Type">{{$item.label}}</ui-select-match>
+                    <ui-select-choices repeat="bikeType.id as bikeType in ::vm.bikeTypes">
+                        <div ng-bind-html="bikeType.label"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">    
+                <ui-select multiple ng-model="vm.filters.bikeSizes" theme="bootstrap" close-on-select="false" style="min-height: 34px;" title="Choisissez une diamètre de roues">
+                    <ui-select-match placeholder="Taille">{{$item.label}}</ui-select-match>
+                    <ui-select-choices repeat="bikeSize.id as bikeSize in vm.bikeSizes">
+                        <div ng-bind-html="bikeSize.label"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-6">
+                
+            </div>
+            <div class="col-md-6 text-right">
+                <button class="btn btn-default btn-sm btn-addon" ng-click="vm.clearFilters()"><i class="fa fa-close"></i> Filtre</button>
+                <button class="btn btn-info btn-sm btn-addon" ng-click="vm.getBikes()"><i class="fa fa-search"></i> Rechercher</button>
+                
+                <a ui-sref="app.bike.new" class="btn btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.bikes.length && vm.load === false">
+        <div class="wrapper-md">Résultats : {{vm.bikes.length}}</div>
+    </div> 
+</div>
+
+<div class="table-responsive"  style="background-color: #fff;" ng-if="vm.load === false">
+    <table ng-table="::vm.bikeTableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="bike in $data">
+          <td data-title="'Libellé'" sortable="'label'">
+            {{::bike.label}}
+          </td>
+          <td data-title="'Numéro'" sortable="'number'">
+            {{::bike.number}}
+          </td>
+          <td data-title="'Type'" sortable="'bike_type.label'">
+            {{::bike.bike_type.label}}
+          </td>
+          <td data-title="'Taille'" sortable="'bike_size.label'">
+            {{::bike.bike_size.label}}
+          </td>
+          <td data-title="'Actif'" sortable="'active'">
+            {{ ::bike.active ? 'Oui' : 'Non' }}
+          </td>
+          <td class="table-column-action">
+            <a ui-sref="app.bike.edit({ id: bike.id })" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-edit"></i>Modifier</a>
+          </td>
+        </tr>
+
+      </table>
+</div>

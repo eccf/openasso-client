@@ -1,0 +1,34 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Actions de bénévolat</h1>
+</div>
+
+<div uib-alert ng-repeat="alert in vm.alerts" ng-class="'alert-' + (alert.type || 'warning')">{{alert.message}}</div>
+    
+<div class="row wrapper" ng-if="vm.hasCurrentPeriod()">
+  <div class="col-sm-12 text-right">
+    <a ui-sref="app.volunteerism.new" class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
+  </div>
+</div>
+
+<div class="table-responsive"  style="background-color: #fff;" ng-if="vm.hasCurrentPeriod()">
+    <table ng-table="::vm.tableParams" class="table table-striped b-t b-light">
+        <tr ng-repeat="volunteerism in $data">
+          <td data-title="'Evènement'" sortable="'event'">
+            {{volunteerism.event}}
+          </td>
+          <td data-title="'Date'" sortable="'date'">
+            {{volunteerism.date | date : 'dd/MM/yyyy'}}
+          </td>
+          <td data-title="'Heures'" sortable="'hours'">
+            {{volunteerism.hours}}
+          </td>
+          <td data-title="'Bénévole'" sortable="'volunteer'">
+            {{volunteerism.volunteer}}
+          </td>
+          <td class="table-column-action">
+            <a ui-sref="app.volunteerism.edit({ id: volunteerism.id })" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-edit"></i>Modifier</a>
+          </td>
+        </tr>
+
+      </table>
+</div>

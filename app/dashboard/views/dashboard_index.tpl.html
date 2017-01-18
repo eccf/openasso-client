@@ -1,0 +1,160 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false; 
+    app.settings.asideDock = false;
+  ">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">Tableau de bord</h1>
+          <small class="text-muted">Page d'accueil</small>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md">
+      
+      <alert ng-if="vm.hasCurrentPeriod() === false" type="danger">
+        Aucune période courante n'est définie dans l'application.<br />
+        Merci de définir au préalable une période courante : 
+        <a ui-sref="app.parameter.period.index">Gestion des périodes</a>
+      </alert>
+      
+      <!-- stats -->
+      <div class="row text-center" ng-if="vm.hasCurrentPeriod()">
+        <div class="col-xs-12 m-b-md">
+              <div class="r bg-success dker item hbox no-border">
+                <div class="col dk padder-v r-r">
+                  <div class="text-white font-thin h1">{{vm.getCurrentPeriod().label}}</div>
+                  <span>Période courante</span>
+                </div>
+              </div>
+            </div>
+        <div class="col-md-6">
+          <div class="row row-sm">
+            <div class="col-xs-6">
+              <div class="panel padder-v bg-danger item">
+                <div class="h1 font-thin">{{vm.getDashboardStats().countActiveGroup}}</div>
+                <span>Groupes actifs</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v bg-primary item">
+                <div class="h1 font-thin">{{vm.getDashboardStats().countActiveSection}}</div>
+                <span>Sections actives</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v bg-info item">
+                <div class="h1 font-thin">{{vm.getDashboardStats().countActiveBike}}</div>
+                <span>Vélos actifs</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-warning item text-dark">
+                <div class="font-thin h1">{{vm.getDashboardStats().countActiveVehicle}}</div>
+                <span>Véhicules</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row row-sm">
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{vm.getDashboardStats().countCurrentSubscription}}</div>
+                <span>Inscrits</span>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{vm.getDashboardStats().countPracticingSubscription}}</div>
+                <span>Pratiquants</span>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{vm.getDashboardStats().countManagerSubscription}}</div>
+                <span>Dirigeants</span>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="panel padder-v dker bg-light item">
+                <div class="h1 font-thin">{{vm.getDashboardStats().countTeacherSubscription}}</div>
+                <span>Encadrants</span>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="panel padder-v dker bg-light item text-dark">
+                <div class="font-thin h1">{{vm.getDashboardStats().countVolunteerSubscription}}</div>
+                <span>Bénévoles</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / stats -->
+
+      <div class="row" ng-if="vm.hasCurrentPeriod()">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Répartition des inscriptions par groupes</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                {{vm.getDashboardStats().countCurrentSubscriptionByGroup}},
+                {
+                  series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                  colors: ['{{app.color.primary}}','{{app.color.info}}','{{app.color.success}}','{{app.color.warning}}','{{app.color.danger}}'],
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                  tooltip: true,
+                  tooltipOpts: { content: '%s: %p.0%' }
+                }
+              " style="height:240px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Répartition des inscriptions par section</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                {{vm.getDashboardStats().countCurrentSubscriptionBySection}},
+                {
+                  series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                  colors: ['{{app.color.primary}}','{{app.color.info}}','{{app.color.success}}','{{app.color.warning}}','{{app.color.danger}}'],
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                  tooltip: true,
+                  tooltipOpts: { content: '%s: %p.0%' }
+                }
+              " style="height:240px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading font-bold">Répartition des inscriptions par état</div>
+            <div class="panel-body">
+              <div ui-jq="plot" ui-options="
+                {{vm.getDashboardStats().countCurrentSubscriptionByState}},
+                {
+                  series: { pie: { show: true, innerRadius: 0.5, stroke: { width: 0 }, label: { show: true, threshold: 0.05 } } },
+                  colors: ['{{app.color.primary}}','{{app.color.info}}','{{app.color.success}}','{{app.color.warning}}','{{app.color.danger}}'],
+                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },   
+                  tooltip: true,
+                  tooltipOpts: { content: '%s: %p.0%' }
+                }
+              " style="height:240px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+  <!-- / main -->
+  
+</div>

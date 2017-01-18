@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr" data-ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Mon Association</title>
+    <meta name="description" content="ECCF" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="assets/css/vendors.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/app.min.css" type="text/css" />
+    <script src="assets/js/config.js"></script>
+  
+</head>
+<body ng-controller="AppController">
+    <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
+    <script src="app/vendors.min.js"></script>
+    <script src="app/app.min.js"></script>
+</body>
+</html>

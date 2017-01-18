@@ -1,0 +1,68 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">Véhicule <b>{{ vehicle.label}}</b></h1>
+</div>
+
+<div class="wrapper-md">
+  <uib-tabset justified="true" class="tab-container" active="vm.activeTab">
+    <uib-tab heading="Profil">
+      <div class="row">
+        <div class="row wrapper">
+          <div class="col-sm-12 text-right">
+            <a ui-sref="app.vehicle.edit({id: vm.vehicle.id})" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-edit"></i>Modifier</a>
+          </div>
+        </div>
+        <div class="col-md-8">
+          
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="clearfix">
+                <a href="" class="pull-left m-r">
+                  <i class="fa fa-car fa-5x"></i>
+                </a>
+                <div class="clear">
+                  <div class="h3 m-t-xs m-b-xs">
+                    {{ vm.vehicle.label}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group no-radius alt">
+              <a class="list-group-item" href="">
+                Date de mise en circulation :
+                {{ vm.vehicle.buildDate | date : 'dd/MM/yyyy'}}
+              </a>
+              <a class="list-group-item" href="">
+                Date d'achat :
+                {{ vm.vehicle.buyDate | date : 'dd/MM/yyyy'}}
+              </a>
+              <a class="list-group-item" href="">
+                Marque :
+                {{ vm.vehicle.brand}}
+              </a>
+              <a class="list-group-item" href="">
+                Immatriculation :
+                {{ vm.vehicle.registration}}
+              </a>
+              
+              <a class="list-group-item" href="">
+                Descriptions :
+                {{ vm.vehicle.description}}
+              </a>
+              <a class="list-group-item" href="">
+                Observations :
+                {{ vm.vehicle.observation}}
+              </a>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </uib-tab>
+  
+    
+    <uib-tab ng-repeat="tab in vm.tabs" heading="{{tab.title}}" select="vm.setActiveTab(tab.id)" active="vm.tab.active">
+      <ng-include src="tab.template"></ng-include>
+    </uib-tab>
+  </uib-tabset>
+</div>
