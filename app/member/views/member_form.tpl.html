@@ -43,19 +43,22 @@
         <div class="row">
           <div class="col-md-6">
           	<div class="form-group">
+              <label class="control-label" for="lastname">Nom *</label>
+              <input type="text" class="form-control" ng-model="vm.member.lastname" id="lastname" placeholder="Entrez une valeur" required maxlength="255">
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="firstname">Prénom *</label>
+              <input type="text" class="form-control" ng-model="vm.member.firstname" id="firstname" placeholder="Entrez une valeur" required maxlength="255">
+            </div>
+            
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
               <label style="display:block;">Sexe</label>
               <div class="btn-group">
                 <label class="btn btn-primary" ng-model="vm.member.sexe" uib-btn-radio="'M'">Homme</label>
                 <label class="btn btn-primary" ng-model="vm.member.sexe" uib-btn-radio="'F'">Femme</label>
               </div>
-            </div>
-          	<div class="form-group">
-              <label>Nom *</label>
-              <input type="text" class="form-control" ng-model="vm.member.lastname" placeholder="Entrez une valeur" required maxlength="255">
-            </div>
-            <div class="form-group">
-              <label class="control-label" for="firstname">Prénom *</label>
-              <input type="text" class="form-control" ng-model="vm.member.firstname" name="firstname" placeholder="Entrez une valeur" required maxlength="255">
             </div>
             <div class="form-group">
               <label>Date de naissance</label>
@@ -67,82 +70,96 @@
               </p>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-				      <label>Contact - Représentant légal</label>
-				      <textarea class="form-control" ng-model="vm.member.contact" placeholder="Entrez une valeur"></textarea>
-				    </div>
-          </div>
           
         </div>
         
         <div class="row">
           <div class="col-md-6">
             <div class="b-b b-light m-b-md">
+              <h4 class="font-thin m-b-xs">Représentant légal</h4>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="legalGuardianLastname">Nom</label>
+              <input type="text" class="form-control" ng-model="vm.member.legalGuardianLastname" id="legalGuardianLastname" placeholder="Entrez une valeur" required maxlength="255">
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="legalGuardianFirstname">Prénom</label>
+              <input type="text" class="form-control" ng-model="vm.member.legalGuardianFirstname" id="legalGuardianFirstname" placeholder="Entrez une valeur" required maxlength="255">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="b-b b-light m-b-md">
               <h4 class="font-thin m-b-xs">Adresse</h4>
             </div>
             <div class="form-group">
-              <label>Voie</label>
-              <textarea class="form-control" ng-model="vm.member.address" placeholder="Entrez une valeur"></textarea>
+              <label class="control-label" for="address">Voie</label>
+              <textarea class="form-control" ng-model="vm.member.address" id="address" placeholder="Entrez une valeur"></textarea>
             </div>
-
-            <div class="form-group">
-              <label>Code postal</label>
-              <input type="text" class="form-control" ng-model="vm.member.zipcode" placeholder="Entrez une valeur" maxlength="15">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label" for="zipcode">Code postal</label>
+                  <input type="text" class="form-control" ng-model="vm.member.zipcode" id="zipcode" placeholder="Entrez une valeur" maxlength="15">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label" for="town">Ville</label>
+                  <input type="text" class="form-control" ng-model="vm.member.town" id="town" placeholder="Entrez une valeur" maxlength="255">
+                </div>
+              </div>
             </div>
-
-            <div class="form-group">
-              <label>Ville</label>
-              <input type="text" class="form-control" ng-model="vm.member.town" placeholder="Entrez une valeur" maxlength="255">
-            </div>
-            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
             <div class="b-b b-light m-b-md">
               <h4 class="font-thin m-b-xs">Téléphones</h4>
             </div>
-            
             <div class="row">
-              
               <div class="col-md-6">
                 <div class="form-group">
                   <input type="text" class="form-control" ng-model="vm.member.phone1" placeholder="Téléphone 1" maxlength="15">
                 </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="vm.member.phone2" placeholder="Téléphone 2" maxlength="15">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" ng-model="vm.member.phone3" placeholder="Téléphone 3" maxlength="15">
-                </div>
               </div>
-              
               <div class="col-md-6">
                 <div class="form-group">
                   <select class="form-control m-b" ng-model="vm.member.phone1Label" ng-options="phoneType for phoneType in vm.phoneTypes" placeholder="Choisissez parmi la liste">
                     <option value=""></option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <select class="form-control m-b" ng-model="vm.member.phone2Label" ng-options="phoneType for phoneType in vm.phoneTypes" placeholder="Choisissez parmi la liste">
-                    <option value=""></option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <select class="form-control m-b" ng-model="vm.member.phone3Label" ng-options="phoneType for phoneType in vm.phoneTypes" placeholder="Choisissez parmi la liste">
-                    <option value=""></option>
-                  </select>
-                </div>
               </div>
-              
             </div>
-            
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="vm.member.phone2" placeholder="Téléphone 2" maxlength="15">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control m-b" ng-model="vm.member.phone2Label" ng-options="phoneType for phoneType in vm.phoneTypes" placeholder="Choisissez parmi la liste">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="vm.member.phone3" placeholder="Téléphone 3" maxlength="15">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control m-b" ng-model="vm.member.phone3Label" ng-options="phoneType for phoneType in vm.phoneTypes" placeholder="Choisissez parmi la liste">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </div>
           </div>
           <div class="col-md-6">
-            <div class="b-b b-light m-b-md">
-              <h4 class="font-thin m-b-xs">Permis</h4>
-            </div>
-            <div class="form-group">
-              <label>Numéro de permis de conduire</label>
-              <input type="text" class="form-control" ng-model="vm.member.driverLicense" placeholder="Entrez une valeur" maxlength="255">
-            </div>
             <div class="b-b b-light m-b-md">
               <h4 class="font-thin m-b-xs">Emails</h4>
             </div>
@@ -151,12 +168,6 @@
                 <div class="form-group">
                   <input type="email" class="form-control" ng-model="vm.member.email1" placeholder="Email 1" maxlength="255">
                 </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" ng-model="vm.member.email2" placeholder="Email 2" maxlength="255">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" ng-model="vm.member.email3" placeholder="Email 3" maxlength="255">
-                </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -164,11 +175,29 @@
                     <option value=""></option>
                   </select>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="email" class="form-control" ng-model="vm.member.email2" placeholder="Email 2" maxlength="255">
+                </div>
+              </div>
+              <div class="col-md-6">
                 <div class="form-group">
                   <select class="form-control m-b" ng-model="vm.member.email2Label" ng-options="emailType for emailType in vm.emailTypes" placeholder="Choisissez parmi la liste">
                     <option value=""></option>
                   </select>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="email" class="form-control" ng-model="vm.member.email3" placeholder="Email 3" maxlength="255">
+                </div>
+              </div>
+              <div class="col-md-6">
                 <div class="form-group">
                   <select class="form-control m-b" ng-model="vm.member.email3Label" ng-options="emailType for emailType in vm.emailTypes" placeholder="Choisissez parmi la liste">
                     <option value=""></option>
@@ -176,17 +205,29 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="b-b b-light m-b-md">
+              <h4 class="font-thin m-b-xs">Permis</h4>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="driverLicense">Numéro de permis de conduire</label>
+              <input type="text" class="form-control" ng-model="vm.member.driverLicense" id="driverLicense" placeholder="Entrez une valeur" maxlength="255">
+            </div>
+          </div>
+          <div class="col-md-6">
             <div class="b-b b-light m-b-md">
               <h4 class="font-thin m-b-xs">Réseaux sociaux</h4>
             </div>
             <div class="form-group">
-              <label>Facebook</label>
-              <input type="text" class="form-control" ng-model="vm.member.facebook" placeholder="Entrez une valeur" maxlength="255">
+              <label class="control-label" for="facebook">Facebook</label>
+              <input type="text" class="form-control" ng-model="vm.member.facebook" id="facebook" placeholder="Entrez une valeur" maxlength="255">
             </div>
-
             <div class="form-group">
-              <label>Twitter</label>
-              <input type="text" class="form-control" ng-model="vm.member.twitter" placeholder="Entrez une valeur" maxlength="255">
+              <label class="control-label" for="twitter">Twitter</label>
+              <input type="text" class="form-control" ng-model="vm.member.twitter" id="twitter" placeholder="Entrez une valeur" maxlength="255">
             </div>
           </div>
         </div>
