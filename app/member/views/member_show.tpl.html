@@ -64,6 +64,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-6" ng-if="vm.member.legalGuardianLastname">
+                    <div class="panel padder-v item">
+                        <div class="text-info font-thin h1 block"><i class="fa fa-user-circle"></i></div>
+                        <div class="text-muted text-xs">
+                            {{vm.member.legalGuardianLastname}} {{vm.member.legalGuardianFirstname}}
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="panel no-border" ng-if="vm.member.contact">
