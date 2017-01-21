@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @author    Eric Mas <e.mas@opendev.fr>
+ * @author    Eric Mas <webmaster@clermont-cyclisme.fr>
  * @copyright 2017 Etoile Cycliste de Clermont-Ferrand
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GPL License 3.0 or (at your option) any later version
  */
