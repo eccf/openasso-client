@@ -5,9 +5,8 @@
     <div class="wrapper-lg bg-white-opacity">
         <div class="row m-t">
             <div class="col-sm-7">
-              <a href="" class="thumb-lg pull-left m-r">
-                <img src="assets/img/woman_cyclist.png" class="img-circle" ng-if="vm.member.sexe === 'F'">
-                <img src="assets/img/man_cyclist.png" class="img-circle" ng-if="vm.member.sexe !== 'F'">
+              <a class="thumb-lg pull-left m-r">
+                <img src="{{vm.getAvatar()}}" class="img-circle" alt="avatar">
               </a>
               <div class="clear m-b">
                 <div class="m-b m-t-sm">
@@ -58,6 +57,13 @@
                 <option value=""></option>
               </select>
             </div>
+            
+            <div class="form-group">
+              <label style="display:block;">Niveau</label>
+              <select class="form-control m-b" ng-model="vm.subscription.level" ng-options="level.id as level.label for level in vm.levels" placeholder="Choisissez parmi la liste">
+                <option value=""></option>
+              </select>
+            </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
@@ -81,21 +87,30 @@
                 <label class="btn btn-primary" ng-model="vm.subscription.licenseForm" uib-btn-radio="false">Non</label>
               </div>
             </div>
+            <div class="form-group">
+              <label style="display:block;">Etat de l'inscription</label>
+              <select class="form-control m-b" ng-model="vm.subscription.subscriptionState" ng-options="subscriptionState.id as subscriptionState.label for subscriptionState in vm.subscriptionStates" placeholder="Choisissez parmi la liste">
+              </select>
+            </div>
           </div>
         </div>
         <div class="form-group">
           <label>Notes</label>
           <textarea class="form-control" ng-model="vm.subscription.note"></textarea>
         </div>
-        <div class="form-group">
-          <label style="display:block;">Pratiquant</label>
-          <div class="btn-group">
-            <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="true">Oui</label>
-            <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="false">Non</label>
-          </div>
+        
+        <div class="b-b b-light m-b-md m-t-lg">
+          <h4 class="font-thin m-b-xs">Type d'adhérent</h4>
         </div>
         <div class="row">
           <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Pratiquant</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
             <div class="form-group">
               <label style="display:block;">Bénévole</label>
               <div class="btn-group">
@@ -110,14 +125,16 @@
                 <label class="btn btn-primary" ng-model="vm.subscription.teacher" uib-btn-radio="false">Non</label>
               </div>
             </div>
-            <div class="form-group">
-              <label style="display:block;">Niveau</label>
-              <select class="form-control m-b" ng-model="vm.subscription.level" ng-options="level.id as level.label for level in vm.levels" placeholder="Choisissez parmi la liste">
-                <option value=""></option>
-              </select>
-            </div>
+            
           </div>
           <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Conseil d'administration</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.director" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.director" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
             <div class="form-group">
               <label style="display:block;">Dirigeant</label>
               <div class="btn-group">
@@ -132,17 +149,90 @@
                 <label class="btn btn-primary" ng-model="vm.subscription.salaried" uib-btn-radio="false">Non</label>
               </div>
             </div>
-            <div class="form-group">
-              <label style="display:block;">Etat de l'inscription</label>
-              <select class="form-control m-b" ng-model="vm.subscription.subscriptionState" ng-options="subscriptionState.id as subscriptionState.label for subscriptionState in vm.subscriptionStates" placeholder="Choisissez parmi la liste">
-              </select>
-            </div>
+            
           </div>
         </div>
         
+        <div class="b-b b-light m-b-md m-t-lg">
+          <h4 class="font-thin m-b-xs">Allergies</h4>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Asthme</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.asthmaAllergy" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.asthmaAllergy" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Alimentaire</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.foodAllergy" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.foodAllergy" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Médicamenteuse</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.drugAllergy" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.drugAllergy" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="display:block;">Autre</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.otherAllergy" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.otherAllergy" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Cause de l'allergie et conduite à tenir</label>
+          <textarea class="form-control" ng-model="vm.subscription.allergyCause"></textarea>
+        </div>
+        
+        <div class="b-b b-light m-b-md m-t-lg">
+          <h4 class="font-thin m-b-xs">Recommandations utiles</h4>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" ng-model="vm.subscription.advice"></textarea>
+        </div>
+        
+        <div class="b-b b-light m-b-md m-t-lg">
+          <h4 class="font-thin m-b-xs">Autorisation du représentant légal (si adhérent mineur)</h4>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Pouvoir de décision (secours, hospitalisation)</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.decisionPower" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.decisionPower" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label style="display:block;">Quitter seul le lien d'entrainenent</label>
+              <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.subscription.leaveAlone" uib-btn-radio="true">Oui</label>
+                <label class="btn btn-primary" ng-model="vm.subscription.leaveAlone" uib-btn-radio="false">Non</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" ng-hide="vm.subscription.leaveAlone">
+          <label>Personnes autorisées à venir chercher l'adhérent mineur</label>
+          <textarea class="form-control" ng-model="vm.subscription.authorizedPersons"></textarea>
+        </div>
       </div>
       <footer class="panel-footer text-right bg-light lter">
         <a class="btn btn-default btn-addon" ui-sref="app.member.subscription.list({idMember: vm.member.id})"><i class="fa fa-arrow-left"></i>Retour adhésions</a>
+        <a class="btn btn-default btn-addon" ui-sref="app.member.show({id: vm.member.id})"><i class="fa fa-arrow-left"></i>Retour profil</a>
         <button ng-click="vm.save()" class="btn btn-success btn-addon" ng-disabled="form.$invalid"><i class="fa fa-check"></i>Enregistrer</button>
       </footer>
     </div>

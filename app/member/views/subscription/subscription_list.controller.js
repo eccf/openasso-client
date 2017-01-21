@@ -34,6 +34,7 @@
     var vm = this;
     vm.member = member;
     vm.subscriptions = subscriptions;
+    vm.getAvatar = getAvatar;
     activate();
 
     /////////////////////
@@ -47,6 +48,19 @@
         'period.label': 'desc'
       });
     }
+    
+    function getAvatar() {
+      if(vm.member.photo) {
+        return Config.get('upload_url') + '/member/' + member.photo;
+      }
+      else if(vm.member.sexe === 'F') {
+        return 'assets/img/woman_cyclist.png';
+      }
+      else {
+        return 'assets/img/man_cyclist.png';
+      }
+    }
+    
   }
 })();
 

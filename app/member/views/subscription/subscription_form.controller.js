@@ -34,7 +34,7 @@
     var vm = this;
     vm.member = member;
     vm.subscription = subscription;
-
+    vm.getAvatar = getAvatar;
     vm.save = save;
     activate();
 
@@ -103,6 +103,18 @@
       if(member.lastSubscription) {
         vm.subscription.group = member.lastSubscription.group;
         vm.subscription.section = member.lastSubscription.section;
+      }
+    }
+    
+    function getAvatar() {
+      if(vm.member.photo) {
+        return Config.get('upload_url') + '/member/' + member.photo;
+      }
+      else if(vm.member.sexe === 'F') {
+        return 'assets/img/woman_cyclist.png';
+      }
+      else {
+        return 'assets/img/man_cyclist.png';
       }
     }
   }

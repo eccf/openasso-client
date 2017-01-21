@@ -5,9 +5,8 @@
     <div class="wrapper-lg bg-white-opacity">
         <div class="row m-t">
             <div class="col-sm-7">
-              <a href="" class="thumb-lg pull-left m-r">
-                <img src="assets/img/woman_cyclist.png" class="img-circle" ng-if="vm.member.sexe === 'F'">
-                <img src="assets/img/man_cyclist.png" class="img-circle" ng-if="vm.member.sexe !== 'F'">
+              <a class="thumb-lg pull-left m-r">
+                <img src="{{vm.getAvatar()}}" class="img-circle" alt="avatar">
               </a>
               <div class="clear m-b">
                 <div class="m-b m-t-sm">
