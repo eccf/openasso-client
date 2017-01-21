@@ -295,6 +295,67 @@
       controller: 'BikeRentFormController',
       controllerAs: 'vm'
     })
+    
+    /////////////////////////////////////////////
+
+    .state('app.member.degree', {
+      url: '/{idMember}/degree',
+      parent: 'app.member',
+      template: '<ui-view/>',
+      abstract: true
+    })
+
+    .state('app.member.degree.new', {
+      url: '/new',
+      templateUrl: prefixTplPath + 'degree/degree_form.tpl.html',
+      resolve: {
+        loadDependencies: ['$ocLazyLoad', function($ocLazyLoad){
+        return $ocLazyLoad.load({
+          files: [
+          prefixCtrlPath + 'degree/degree_form.controller.js'
+          ]
+        });
+        }],
+        member: ['_DataService', '$stateParams', function(_DataService, $stateParams) {
+          return _DataService.getOneFromCache('member',$stateParams.idMember, {representation: 'detail'});
+        }],
+        degree: ['member', function(member) {
+          return {
+            member: member.id
+          };
+        }],
+        degreeTypes: ['_DataService', function(_DataService) {
+          return _DataService.getListFromCache('degree-type');
+        }]
+      },
+      controller: 'DegreeFormController',
+      controllerAs: 'vm'
+    })
+
+    .state('app.member.degree.edit', {
+      url: '/{id}/edit',
+      templateUrl: prefixTplPath + 'degree/degree_form.tpl.html',
+      resolve: {
+        loadDependencies: ['$ocLazyLoad', function($ocLazyLoad){
+          return $ocLazyLoad.load({
+            files: [
+              prefixCtrlPath + 'degree/degree_form.controller.js'
+            ]
+          });
+        }],
+        member: ['_DataService', '$stateParams', function(_DataService, $stateParams) {
+          return _DataService.getOneFromCache('member',$stateParams.idMember, {representation: 'detail'});
+        }],
+        degree: ['_DataService', '$stateParams', function(_DataService, $stateParams) {
+          return _DataService.getOneFromCache('degree', $stateParams.id);
+        }],
+        degreeTypes: ['_DataService', function(_DataService) {
+          return _DataService.getListFromCache('degree-type');
+        }]
+      },
+      controller: 'DegreeFormController',
+      controllerAs: 'vm'
+    })
 
     ////////////////////////////////
 
@@ -352,6 +413,67 @@
         }]
       },
       controller: 'DegreeTypeFormController',
+      controllerAs: 'vm'
+    })
+    
+    /////////////////////////////////////////////
+
+    .state('app.member.license', {
+      url: '/{idMember}/license',
+      parent: 'app.member',
+      template: '<ui-view/>',
+      abstract: true
+    })
+
+    .state('app.member.license.new', {
+      url: '/new',
+      templateUrl: prefixTplPath + 'license/license_form.tpl.html',
+      resolve: {
+        loadDependencies: ['$ocLazyLoad', function($ocLazyLoad){
+        return $ocLazyLoad.load({
+          files: [
+          prefixCtrlPath + 'license/license_form.controller.js'
+          ]
+        });
+        }],
+        member: ['_DataService', '$stateParams', function(_DataService, $stateParams) {
+          return _DataService.getOneFromCache('member',$stateParams.idMember, {representation: 'detail'});
+        }],
+        license: ['member', function(member) {
+          return {
+            member: member.id
+          };
+        }],
+        federations: ['_DataService', function(_DataService) {
+          return _DataService.getListFromCache('federation');
+        }]
+      },
+      controller: 'LicenseFormController',
+      controllerAs: 'vm'
+    })
+
+    .state('app.member.license.edit', {
+      url: '/{id}/edit',
+      templateUrl: prefixTplPath + 'license/license_form.tpl.html',
+      resolve: {
+        loadDependencies: ['$ocLazyLoad', function($ocLazyLoad){
+          return $ocLazyLoad.load({
+            files: [
+              prefixCtrlPath + 'license/license_form.controller.js'
+            ]
+          });
+        }],
+        member: ['_DataService', '$stateParams', function(_DataService, $stateParams) {
+          return _DataService.getOneFromCache('member',$stateParams.idMember, {representation: 'detail'});
+        }],
+        license: ['_DataService', '$stateParams', function(_DataService, $stateParams) {
+          return _DataService.getOneFromCache('license', $stateParams.id);
+        }],
+        federations: ['_DataService', function(_DataService) {
+          return _DataService.getListFromCache('federation');
+        }]
+      },
+      controller: 'LicenseFormController',
       controllerAs: 'vm'
     })
 
