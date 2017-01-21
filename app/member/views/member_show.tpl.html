@@ -64,31 +64,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6" ng-if="vm.member.legalGuardianLastname">
-                    <div class="panel padder-v item">
-                        <div class="text-info font-thin h1 block"><i class="fa fa-user-circle"></i></div>
-                        <div class="text-muted text-xs">
-                            {{vm.member.legalGuardianLastname}} {{vm.member.legalGuardianFirstname}}
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             
-            <div class="panel no-border" ng-if="vm.member.contact">
+            <div class="panel no-border" ng-if="vm.member.legalGuardianLastname">
                 <div class="panel-heading wrapper b-b b-light">
-                  <h4 class="font-thin m-t-none m-b-none">Contact - Représentant légal</h4>              
+                  <h4 class="font-thin m-t-none m-b-none">Représentant légal</h4>              
                 </div>
                 <ul class="list-group list-group-lg m-b-none">
                   <li class="list-group-item">
                     <a href class="thumb-sm m-r">
                         <i class="fa fa-user fa-2x v-middle"></i>
                     </a>
-                    <a href>{{vm.member.contact}}</a>
+                    <a href>{{vm.member.legalGuardianLastname}} {{vm.member.legalGuardianFirstname}}</a>
                   </li>
                 </ul>
             </div>
             
-            <div class="panel no-border" ng-if="vm.licenses && vm.licenses.length > 0">
+            <div class="panel no-border" ng-if="vm.licenses">
                 <div class="panel-heading wrapper b-b b-light">
                   <h4 class="font-thin m-t-none m-b-none">Licences</h4>              
                 </div>
@@ -97,11 +90,7 @@
                     <a href class="thumb-sm m-r">
                         <i class="fa fa-id-card-o fa-2x v-middle"></i>
                     </a>
-                    <span ng-switch on="license.federation.id">
-                        <span class="pull-right label bg-warning inline m-t-sm" ng-switch-when="1">{{license.federation.label}}</span>
-                        <span class="pull-right label bg-success inline m-t-sm" ng-switch-when="2">{{license.federation.label}}</span>
-                        <span class="pull-right label bg-primary inline m-t-sm" ng-switch-when="3">{{license.federation.label}}</span>
-                    </span>
+                    <span class="pull-right label bg-light inline m-t-sm" ng-if="license.federation">{{license.federation.label}}</span>
                     <a ui-sref="app.member.license.edit({idMember: vm.member.id, id: license.id})">{{license.number}}</a>
                   </li>
                 </ul>
@@ -110,9 +99,9 @@
                 </div>
             </div>
             
-            <div class="panel no-border" ng-if="vm.degrees && vm.degrees.length > 0">
+            <div class="panel no-border" ng-if="vm.degrees">
                 <div class="panel-heading wrapper b-b b-light">
-                  <h4 class="font-thin m-t-none m-b-none text-muted">Diplômes</h4>              
+                  <h4 class="font-thin m-t-none m-b-none">Diplômes</h4>              
                 </div>
                 <ul class="list-group list-group-lg m-b-none">
                   <li class="list-group-item" ng-repeat="degree in vm.degrees">
@@ -169,7 +158,7 @@
                       <span class="label" style="font-size:100%;" ng-class="vm.member.currentSubscription.subscriptionState.label === 'Complet' ? 'label-success' : 'label-danger'">{{vm.member.currentSubscription.subscriptionState.label}}</span>
                     </a>
                 </div>
-                <div class="hbox text-center text-sm" ng-if="vm.member.currentSubscription">          
+                <div class="hbox text-center b-b b-light text-sm" ng-if="vm.member.currentSubscription">          
                     <a href class="col padder-v text-muted b-r b-light" ng-if="vm.member.currentSubscription.practicing">
                       <span>Pratiquant</span>
                     </a>
@@ -181,6 +170,26 @@
                     </a>
                     <a href class="col padder-v text-muted" ng-if="vm.member.currentSubscription.manager">
                       <span>Dirigeant</span>
+                    </a>
+                </div>
+                <div class="hbox text-center b-b b-light text-sm" ng-if="vm.hasAllergy()">
+                  <a href class="col padder-v text-muted">
+                    <i class="fa fa-warning text-danger-dker fa-2x"></i> Allergies : 
+                    <span ng-if="vm.member.currentSubscription.asthmaAllergy">Asthme</span>
+                    <span ng-if="vm.member.currentSubscription.foodAllergy">Alimentaire</span>
+                    <span ng-if="vm.member.currentSubscription.drugAllergy">Médicamenteuse</span>
+                    <span ng-if="vm.member.currentSubscription.otherAllergy">Autre</span>
+                  </a>
+                </div>
+                <div class="hbox text-center b-b b-light text-sm" ng-if="vm.hasAllergy()">
+                  <a href class="col padder-v text-muted b-r b-light">
+                        <i ng-class="vm.member.currentSubscription.decisionPower ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+                        <span>Pouvoir de décision (en cas d'urgence)</span>
+                    </a>
+                    <a href class="col padder-v text-muted b-r b-light">
+                        <i ng-class="vm.member.currentSubscription.leaveAlone ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+                        <span class="block">Quitter l'entrainement seul</span>
+                        <span class="block" ng-hide="vm.member.currentSubscription.leaveAlone">Personnes autorisées : {{vm.member.currentSubscription.authorizedPersons}}</span>
                     </a>
                 </div>
             </div>

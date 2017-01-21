@@ -34,6 +34,7 @@
     var vm = this;
     vm.member = member;
     vm.getAvatar = getAvatar;
+    vm.hasAllergy = hasAllergy;
     activate();
 
     /////////////////////
@@ -52,6 +53,17 @@
       else {
         return 'assets/img/man_cyclist.png';
       }
+    }
+    
+    function hasAllergy() {
+      return (
+        vm.member.currentSubscription && (
+          vm.member.currentSubscription.asthmaAllergy ||
+          vm.member.currentSubscription.foodAllergy ||
+          vm.member.currentSubscription.drugAllergy ||
+          vm.member.currentSubscription.otherAllergy
+        )
+      );
     }
 
     function loadAsync() {
