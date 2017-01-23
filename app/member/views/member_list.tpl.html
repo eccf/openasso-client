@@ -49,24 +49,22 @@
                 <label class="checkbox-inline i-checks">
                   <input type="checkbox" ng-model="vm.filters.practicing"><i></i> Pratiquant
                 </label>
-
-
                 <label class="checkbox-inline i-checks">
                   <input type="checkbox" ng-model="vm.filters.volunteer"><i></i> Bénévole
                 </label>
-
                 <label class="checkbox-inline i-checks">
                   <input type="checkbox" ng-model="vm.filters.teacher"><i></i> Educateur
                 </label>
-
                 <label class="checkbox-inline i-checks">
                   <input type="checkbox" ng-model="vm.filters.manager"><i></i> Dirigeant
+                </label>
+                <label class="checkbox-inline i-checks">
+                  <input type="checkbox" ng-model="vm.filters.director"><i></i> CA
                 </label>
             </div>
             <div class="col-md-6 text-right">
                 <button class="btn btn-default btn-sm btn-addon" ng-click="vm.clearFilters()"><i class="fa fa-close"></i> Filtre</button>
                 <button class="btn btn-info btn-sm btn-addon" ng-click="vm.getMembers()"><i class="fa fa-search"></i> Rechercher</button>
-                
                 <a ui-sref="app.member.new" class="btn btn-sm btn-info btn-addon"><i class="fa fa-plus"></i>Nouveau</a>
             </div>
         </div>

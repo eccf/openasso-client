@@ -126,13 +126,14 @@
       else {
         vm.filters = {
           name: '',
-          groups:[],
-          period:null,
+          groups: [],
+          period: null,
           subscriptionsState: [],
           practicing: false,
           teacher: false,
           volunteer: false,
-          manager: false
+          manager: false,
+          director: false
         };
         vm.currentPeriod = getCurrentPeriod(periods);
         if(vm.currentPeriod) {
