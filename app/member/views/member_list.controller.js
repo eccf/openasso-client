@@ -133,7 +133,8 @@
           teacher: false,
           volunteer: false,
           manager: false,
-          director: false
+          director: false,
+          noCurrentPeriodSubscription: false
         };
         vm.currentPeriod = getCurrentPeriod(periods);
         if(vm.currentPeriod) {
