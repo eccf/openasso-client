@@ -16,6 +16,7 @@ module.exports = {
       'app/app.controller.js',
 			'app/**/*.module.js',
       'app/**/*.config.js',
+      'app/common/directives/**/*.js',
       'app/common/services/**/*.js',
       'app/common/filters/**/*.js',
       'theme/**/*.js'
