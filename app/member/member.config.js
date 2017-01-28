@@ -59,6 +59,9 @@
         }],
         subscriptionStates: ['_DataService', function(_DataService) {
           return _DataService.getListFromCache('subscription-state');
+        }],
+        positions: ['_DataService', function(_DataService) {
+          return _DataService.getListFromCache('position');
         }]
       },
       controller: 'MemberListController',
