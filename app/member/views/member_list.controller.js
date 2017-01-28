@@ -28,9 +28,9 @@
     .module('app.member')
     .controller('MemberListController', MemberListController);
 
-  MemberListController.$inject = ['periods', 'groups', 'subscriptionStates', '$scope', 'NgTableParams', '_DataService', '_Cache', '$timeout'];
+  MemberListController.$inject = ['periods', 'groups', 'subscriptionStates', 'positions', '$scope', 'NgTableParams', '_DataService', '_Cache', '$timeout'];
 
-  function MemberListController(periods, groups, subscriptionStates, $scope, NgTableParams, _DataService, _Cache, $timeout) {
+  function MemberListController(periods, groups, subscriptionStates, positions, $scope, NgTableParams, _DataService, _Cache, $timeout) {
     var vm = this;
     var initializing = true;
     vm.load = false;
@@ -38,6 +38,7 @@
     vm.periods = periods;
     vm.groups = groups;
     vm.subscriptionStates = subscriptionStates;
+    vm.positions = positions;
     vm.getMembers = getMembers;
     vm.clearFilters = clearFilters;
     vm.getAvatar = getAvatar;
@@ -126,6 +127,7 @@
       else {
         vm.filters = {
           name: '',
+          positions: [],
           groups: [],
           period: null,
           subscriptionsState: [],

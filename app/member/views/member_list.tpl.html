@@ -46,24 +46,13 @@
     <div class="row">
         <div class="form-group">
             <div class="col-md-6">
-                <label class="checkbox-inline i-checks">
-                  <input type="checkbox" ng-model="vm.filters.practicing"><i></i> Pratiquant
-                </label>
-                <label class="checkbox-inline i-checks">
-                  <input type="checkbox" ng-model="vm.filters.volunteer"><i></i> Bénévole
-                </label>
-                <label class="checkbox-inline i-checks">
-                  <input type="checkbox" ng-model="vm.filters.teacher"><i></i> Educateur
-                </label>
-                <label class="checkbox-inline i-checks">
-                  <input type="checkbox" ng-model="vm.filters.manager"><i></i> Dirigeant
-                </label>
-                <label class="checkbox-inline i-checks">
-                  <input type="checkbox" ng-model="vm.filters.director"><i></i> CA
-                </label>
-                <label class="checkbox-inline i-checks">
-                  <input type="checkbox" ng-model="vm.filters.noCurrentPeriodSubscription"><i></i> Non inscrit (période courante)
-                </label>
+             <label ng-class="'checkbox-inline i-checks'" ng-repeat="position in vm.positions" style="margin: 1px 5px;">
+                <input type="checkbox" checklist-model="vm.filters.positions" checklist-value="position.id"><i></i> {{position.label}}
+              </label>
+             
+              <label class="checkbox-inline i-checks" style="margin: 1px 5px;">
+                <input type="checkbox" ng-model="vm.filters.noCurrentPeriodSubscription"><i></i> Non inscrit (période courante)
+              </label>
             </div>
             <div class="col-md-6 text-right">
                 <button class="btn btn-default btn-sm btn-addon" ng-click="vm.clearFilters()"><i class="fa fa-close"></i> Filtre</button>

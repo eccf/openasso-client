@@ -103,53 +103,12 @@
           <h4 class="font-thin m-b-xs">Type d'adhérent</h4>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
-              <label style="display:block;">Pratiquant</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.practicing" uib-btn-radio="false">Non</label>
-              </div>
+              <label ng-class="'checkbox-inline i-checks i-checks-lg'" style="margin: 10px;width: 200px;"  ng-repeat="position in vm.positions" >
+                <input type="checkbox" checklist-model="vm.subscription.positionCollection" checklist-value="position.id"><i></i> {{position.label}}
+              </label>
             </div>
-            <div class="form-group">
-              <label style="display:block;">Bénévole</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.volunteer" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.volunteer" uib-btn-radio="false">Non</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label style="display:block;">Educateur</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.teacher" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.teacher" uib-btn-radio="false">Non</label>
-              </div>
-            </div>
-            
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label style="display:block;">Conseil d'administration</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.director" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.director" uib-btn-radio="false">Non</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label style="display:block;">Dirigeant</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.manager" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.manager" uib-btn-radio="false">Non</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label style="display:block;">Salarié</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.salaried" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.salaried" uib-btn-radio="false">Non</label>
-              </div>
-            </div>
-            
           </div>
         </div>
         
@@ -159,41 +118,19 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label style="display:block;">Asthme</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.asthmaAllergy" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.asthmaAllergy" uib-btn-radio="false">Non</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label style="display:block;">Alimentaire</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.foodAllergy" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.foodAllergy" uib-btn-radio="false">Non</label>
-              </div>
+              <label ng-class="'checkbox i-checks i-checks-lg'" style="margin: 10px;"  ng-repeat="allergy in vm.allergies" >
+                <input type="checkbox" checklist-model="vm.subscription.allergyCollection" checklist-value="allergy.id"><i></i> {{allergy.label}}
+              </label>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label style="display:block;">Médicamenteuse</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.drugAllergy" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.drugAllergy" uib-btn-radio="false">Non</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label style="display:block;">Autre</label>
-              <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.subscription.otherAllergy" uib-btn-radio="true">Oui</label>
-                <label class="btn btn-primary" ng-model="vm.subscription.otherAllergy" uib-btn-radio="false">Non</label>
-              </div>
+              <label>Cause de l'allergie et conduite à tenir</label>
+              <textarea class="form-control" ng-model="vm.subscription.allergyCause"></textarea>
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label>Cause de l'allergie et conduite à tenir</label>
-          <textarea class="form-control" ng-model="vm.subscription.allergyCause"></textarea>
-        </div>
+        
         
         <div class="b-b b-light m-b-md m-t-lg">
           <h4 class="font-thin m-b-xs">Recommandations utiles</h4>

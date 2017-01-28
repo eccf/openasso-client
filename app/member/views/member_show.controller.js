@@ -34,6 +34,7 @@
     var vm = this;
     vm.member = member;
     vm.getAvatar = getAvatar;
+    vm.hasPosition = hasPosition;
     vm.hasAllergy = hasAllergy;
     activate();
 
@@ -56,14 +57,11 @@
     }
     
     function hasAllergy() {
-      return (
-        vm.member.currentSubscription && (
-          vm.member.currentSubscription.asthmaAllergy ||
-          vm.member.currentSubscription.foodAllergy ||
-          vm.member.currentSubscription.drugAllergy ||
-          vm.member.currentSubscription.otherAllergy
-        )
-      );
+      return member.currentSubscription.allergyCollection && vm.member.currentSubscription.allergyCollection.length > 0;
+    }
+    
+    function hasPosition() {
+      return vm.member.currentSubscription.positionCollection && vm.member.currentSubscription.positionCollection.length > 0;
     }
 
     function loadAsync() {

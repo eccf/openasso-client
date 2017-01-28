@@ -158,30 +158,15 @@
                       <span class="label" style="font-size:100%;" ng-class="vm.member.currentSubscription.subscriptionState.label === 'Complet' ? 'label-success' : 'label-danger'">{{vm.member.currentSubscription.subscriptionState.label}}</span>
                     </a>
                 </div>
-                <div class="hbox text-center b-b b-light text-sm" ng-if="vm.member.currentSubscription">          
-                    <a href class="col padder-v text-muted b-r b-light" ng-if="vm.member.currentSubscription.practicing">
-                      <span>Pratiquant</span>
-                    </a>
-                    <a href class="col padder-v text-muted b-r b-light" ng-if="vm.member.currentSubscription.volunteer">
-                      <span>Bénévole</span>
-                    </a>
-                    <a href class="col padder-v text-muted b-r b-light" ng-if="vm.member.currentSubscription.teacher">
-                      <span>Educateur</span>
-                    </a>
-                    <a href class="col padder-v text-muted" ng-if="vm.member.currentSubscription.manager">
-                      <span>Dirigeant</span>
-                    </a>
-                    <a href class="col padder-v text-muted" ng-if="vm.member.currentSubscription.director">
-                      <span>CA</span>
+                <div class="hbox text-center b-b b-light text-sm" ng-if="vm.hasPosition()">          
+                    <a href class="col padder-v text-muted b-r b-light" ng-repeat="position in vm.member.currentSubscription.positionCollection">
+                      <span>{{position.label}}</span>
                     </a>
                 </div>
                 <div class="hbox text-center b-b b-light text-sm" ng-if="vm.hasAllergy()">
                   <a href class="col padder-v text-muted">
                     <i class="fa fa-warning text-danger-dker fa-2x"></i> Allergies : 
-                    <span ng-if="vm.member.currentSubscription.asthmaAllergy">Asthme</span>
-                    <span ng-if="vm.member.currentSubscription.foodAllergy">Alimentaire</span>
-                    <span ng-if="vm.member.currentSubscription.drugAllergy">Médicamenteuse</span>
-                    <span ng-if="vm.member.currentSubscription.otherAllergy">Autre</span>
+                    <span ng-repeat="allergy in vm.member.currentSubscription.allergyCollection">{{allergy.label}}<span ng-if="!$last"> / </span></span>
                   </a>
                 </div>
                 <div class="hbox text-center b-b b-light text-sm">

@@ -89,6 +89,14 @@
       _DataService.getListFromCache('section').then(function(data) {
         vm.sections = data;
       });
+      
+      _DataService.getListFromCache('position').then(function(data) {
+        vm.positions = data;
+      });
+      
+      _DataService.getListFromCache('allergy').then(function(data) {
+        vm.allergies = data;
+      });
     }
 
     function initAlerts() {
