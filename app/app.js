@@ -43,6 +43,7 @@
       'ngTable',
       'toaster',
       'ui.select',
+      'checklist-model',
 
       'app.common',
       'app.dashboard',

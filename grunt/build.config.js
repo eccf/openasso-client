@@ -62,7 +62,8 @@ module.exports = {
       //Autre vendors
       'bower_components/ng-table/ng-table.js',
       'bower_components/AngularJS-Toaster/toaster.js',
-      'bower_components/angular-ui-select/dist/select.js'
+      'bower_components/angular-ui-select/dist/select.js',
+      'bower_components/checklist-model/checklist-model.js'
     ],
     css: [
       'bower_components/animate.css/animate.css',

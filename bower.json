@@ -52,6 +52,7 @@
     "bootstrap-touchspin": "^3.1.2",
     "bootstrap-wysiwyg": "*",
     "jquery.sparkline": "^2.1.2",
-    "html5sortable": "*"
+    "html5sortable": "*",
+    "checklist-model": "^0.10.0"
   }
 }
