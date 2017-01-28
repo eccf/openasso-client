@@ -67,19 +67,6 @@
             </div>
             <div class="col-xs-3">
               <div class="panel padder-v dker bg-light item">
-                <div class="h1 font-thin">{{result.countCurrentSportiveSubscription}}</div>
-                <span>Inscrits sections sportives</span>
-              </div>
-            </div>
-            <div class="col-xs-3">
-              <div class="panel padder-v dker bg-light item">
-                <div class="h1 font-thin">{{result.countCurrentSportiveClermontSubscription}}</div>
-                <span>Inscrits sections sportives clermontois</span>
-              </div>
-            </div>
-            
-            <div class="col-xs-3">
-              <div class="panel padder-v dker bg-light item">
                 <div class="h1 font-thin">{{result.countCurrentPracticingSubscription}}</div>
                 <span>Inscrits pratiquants</span>
               </div>
@@ -90,20 +77,18 @@
                 <span>Inscrits pratiquants clermontois</span>
               </div>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-6">
               <div class="panel padder-v dker bg-light item">
-                <div class="h1 font-thin">{{result.countCurrentPracticingSportiveSubscription}}</div>
-                <span>Inscrits pratiquants sections sportives</span>
+                <div class="h1 font-thin">{{result.countSubscriptionMen}}</div>
+                <span>Hommes</span>
               </div>
             </div>
-            <div class="col-xs-3">
-              <div class="panel padder-v dker bg-light item">
-                <div class="h1 font-thin">{{result.countCurrentPracticingSportiveClermontSubscription}}</div>
-                <span>Inscrits pratiquants sections sportives clermontois</span>
+            <div class="col-xs-6">
+              <div class="panel padder-v dker bg-light item text-dark">
+                <div class="font-thin h1">{{result.countSubscriptionWomen}}</div>
+                <span>Femmes</span>
               </div>
             </div>
-            
-            
             <div class="col-xs-6">
               <div class="panel padder-v dker bg-light item">
                 <div class="h1 font-thin">{{result.countVolunteerSubscription}}</div>
@@ -239,7 +224,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading font-bold">Evolution du nombre d'adhérents par période</div>
             <div class="panel-body">
@@ -265,47 +250,14 @@
             </div>
           </div>
         </div>
-      
-        <div class="col-md-6">
-          <div class="panel panel-default">
-            <div class="panel-heading font-bold">Order bar</div>
-            <div class="panel-body">
-              <div ui-jq="plot" ui-options="
-                {{periodSubscriptionBySection}},
-                {
-                  series: {
-                    stack: 0,
-                    lines: {
-                      show: false,
-                      fill: true,
-                      steps: false
-                    },
-                    bars: {
-                      show: true,
-                      barWidth: 0.6
-                    }
-                  }, 
-                  colors: ['{{app.color.info}}', '{{app.color.success}}', '{{app.color.primary}}'],
-                  xaxis:{ 
-                    font: { color: '#ccc' }, 
-                    ticks: {{periodSubscriptionBySectionTicks}}
-                  },
-                  yaxis:{ font: { color: '#ccc' } },
-                  grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },                
-                  tooltip: true
-                }
-              " style="height:240px"></div>
-            </div>                  
-          </div>
-        </div>
-        
+          
       </div>
       
       <div class="row">
         
         <div class="col-md-3">
           <div class="panel panel-default">
-            <div class="panel-heading font-bold">Catégorie moins de 12 ans</div>
+            <div class="panel-heading font-bold">Catégorie moins de 13 ans</div>
             <table class="table table-striped m-b-none">
               <thead>
                 <tr>
@@ -328,7 +280,7 @@
         
         <div class="col-md-3">
           <div class="panel panel-default">
-            <div class="panel-heading font-bold">Catégorie 12-18 ans</div>
+            <div class="panel-heading font-bold">Catégorie 13-18 ans</div>
             <table class="table table-striped m-b-none">
               <thead>
                 <tr>
@@ -337,10 +289,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-if="result.countSubscriptionByLevelByAge1218.length === 0">
+                <tr ng-if="result.countSubscriptionByLevelByAge1318.length === 0">
                   <td colspan="2">Aucun résultat</td>
                 </tr>
-                <tr ng-repeat="item in result.countSubscriptionByLevelByAge1218">
+                <tr ng-repeat="item in result.countSubscriptionByLevelByAge1318">
                   <td>{{item.levelLabel}}</td>
                   <td>{{item.data}}</td>
                 </tr>
