@@ -126,7 +126,7 @@
                 
                 <div class="item m-l-n-xxs m-r-n-xxs">
                     <div class="top text-left padder-lg m-t-md w-full">
-                        <a ng-if="vm.member.currentSubscription" ui-sref="app.member.subscription.list({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info pull-right m-r"><i class="fa fa-list-ul"></i></a>
+                        <a ui-sref="app.member.subscription.list({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info pull-right m-r"><i class="fa fa-list-ul"></i></a>
                         <a ng-if="vm.member.currentSubscription" ui-sref="app.member.subscription.edit({idMember: vm.member.id, id: vm.member.currentSubscription.id})" class="btn btn-sm btn-icon btn-rounded btn-info m-l"><i class="fa fa-edit"></i></a>
                         <a ng-if="!vm.member.currentSubscription" ui-sref="app.member.subscription.new({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info m-l"><i class="fa fa-plus"></i></a>
 
