@@ -128,7 +128,7 @@
           return _DataService.getList('member', {
             filters: {
               period: currentPeriod.id,
-              volunteer: true
+              positions: [2]
             },
             representation: 'detail'
           });
