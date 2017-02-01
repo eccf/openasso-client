@@ -1,0 +1,76 @@
+<div class="panel b-a" ng-if="vm.member.currentSubscription">
+    <div class="panel-heading no-border bg-info dk">          
+        <span class="text-lt">Adhésion</span>
+    </div>
+
+    <div class="item m-l-n-xxs m-r-n-xxs">
+        <div class="top text-left padder-lg m-t-md w-full">
+            <a ui-sref="app.member.subscription.list({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info pull-right m-r"><i class="fa fa-list-ul"></i></a>
+            <a ui-sref="app.member.subscription.edit({idMember: vm.member.id, id: vm.member.currentSubscription.id})" class="btn btn-sm btn-icon btn-rounded btn-info m-l"><i class="fa fa-edit"></i></a>
+        </div>
+        <div class="bottom wrapper bg-gd-dk text-white">            
+          <div class="text-u-c h3 m-b-sm" ng-if="vm.member.currentSubscription.group">{{vm.member.currentSubscription.group.label}}</div>
+          <div class="text-info-lter" ng-if="vm.member.currentSubscription.section">{{vm.member.currentSubscription.section.label}}</div>
+        </div>
+        <img src="assets/img/subscription_bg.jpg" class="img-full" style="min-height: 130px;">
+    </div>
+
+    <div class="hbox text-center b-b b-light text-sm">          
+        <a href class="col padder-v text-muted b-r b-light">
+            <i ng-class="vm.member.currentSubscription.medicalCertificate ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+            <span>Certificat médical</span>
+        </a>
+        <a href class="col padder-v text-muted b-r b-light">
+            <i ng-class="vm.member.currentSubscription.licenseForm ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+            <span>Licence</span>
+        </a>
+        <a href class="col padder-v text-muted">
+            <i ng-class="vm.member.currentSubscription.subscriptionForm ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+            <span>Bulletin adhésion</span>
+        </a>
+    </div>
+    <div class="hbox text-center b-b b-light text-sm" ng-if="vm.member.currentSubscription.subscriptionState">
+        <a href class="col padder-v text-muted">
+          <span class="label" style="font-size:100%;" ng-class="vm.member.currentSubscription.subscriptionState.label === 'Complet' ? 'label-success' : 'label-danger'">{{vm.member.currentSubscription.subscriptionState.label}}</span>
+        </a>
+    </div>
+    <div class="hbox text-center b-b b-light text-sm" ng-if="vm.hasPosition()">          
+        <a href class="col padder-v text-muted b-r b-light" ng-repeat="position in vm.member.currentSubscription.positionCollection">
+          <span>{{position.label}}</span>
+        </a>
+    </div>
+    <div class="hbox text-center b-b b-light text-sm" ng-if="vm.hasAllergy()">
+      <a href class="col padder-v text-muted">
+        <i class="fa fa-warning text-danger-dker fa-2x"></i> Allergies : 
+        <span ng-repeat="allergy in vm.member.currentSubscription.allergyCollection">{{allergy.label}}<span ng-if="!$last"> / </span></span>
+      </a>
+    </div>
+    <div class="hbox text-center b-b b-light text-sm">
+      <a href class="col padder-v text-muted b-r b-light">
+            <i ng-class="vm.member.currentSubscription.decisionPower ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+            <span>Pouvoir de décision (en cas d'urgence)</span>
+        </a>
+        <a href class="col padder-v text-muted b-r b-light">
+            <i ng-class="vm.member.currentSubscription.leaveAlone ? 'fa-check text-success' : 'fa-close text-danger-dker'" class="fa block fa-2x"></i>
+            <span class="block">Quitter l'entrainement seul</span>
+            <span class="block" ng-hide="vm.member.currentSubscription.leaveAlone">Personnes autorisées : {{vm.member.currentSubscription.authorizedPersons}}</span>
+        </a>
+    </div>
+</div>
+
+<div class="panel b-a" ng-if="!vm.member.currentSubscription">
+    <div class="panel-heading no-border bg-info dk">          
+        <span class="text-lt">Adhésion</span>
+    </div>
+
+    <div class="item m-l-n-xxs m-r-n-xxs">
+        <div class="top text-left padder-lg m-t-md w-full">
+            <a ui-sref="app.member.subscription.list({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info pull-right m-r"><i class="fa fa-list-ul"></i></a>
+            <a ui-sref="app.member.subscription.new({idMember: vm.member.id})" class="btn btn-sm btn-icon btn-rounded btn-info m-l"><i class="fa fa-plus"></i></a>
+        </div>
+        <div class="bottom wrapper bg-gd-dk text-white">            
+          <div class="text-u-c h3 m-b-sm">Aucune adhésion</div>
+        </div>
+        <img src="assets/img/subscription_bg.jpg" class="img-full" style="min-height: 130px;">
+    </div>
+</div>
