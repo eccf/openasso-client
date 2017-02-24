@@ -51,11 +51,12 @@
             files: [prefixCtrlPath + 'volunteerism_list.controller.js']
           });
         }],
-        volunteerisms: ['_DataService', function(_DataService) {
-          return _DataService.getListFromCache('volunteerism');
-        }],
         currentPeriod: ['_DataService', function(_DataService) {
           return _DataService.getOne('period').one('current').get();
+        }],
+        volunteerisms: ['currentPeriod', '_DataService', function(currentPeriod, _DataService) {
+          //return currentPeriod.getList('volunteerism');
+          return _DataService.getRelatedList('period', currentPeriod.id, 'volunteerism');
         }]
       },
       controller: 'VolunteerismListController',

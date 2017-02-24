@@ -35,6 +35,7 @@
     var service = {
       getListFromCache: getListFromCache,
       getList: getList,
+      getRelatedList: getRelatedList,
       getOne: getOne,
       getOneFromCache: getOneFromCache,
       save: save,
@@ -64,6 +65,18 @@
       else {
         return getList(key, options);
       }
+    }
+    
+    function getRelatedList(key, id, relatedKey, options) {
+      return Restangular.one(key, id).getList(relatedKey, options)
+        .then(function(values) {
+          //_Cache.put(key+'-list', values);
+          return values;
+        })
+        .catch(function(response) {
+          console.log('Erreur request api getList : ' + key);
+          console.log(response);
+        });
     }
 
     function getOne(key, id, options, noCache) {

@@ -169,7 +169,7 @@
           return _DataService.getOneFromCache('member',$stateParams.idMember, {representation: 'detail'});
         }],
         subscriptions: ['member', function(member) {
-          return member.getList('subscription');
+          return member.getList('subscription', {representation: 'detail'});
         }]
       },
       controller: 'SubscriptionListController',

@@ -65,13 +65,13 @@
     }
 
     function loadAsync() {
-      member.getList('license').then(function(data) {
+      member.getList('license', {representation:'detail'}).then(function(data) {
         vm.licenses = data;
       });
-      member.getList('degree').then(function(data) {
+      member.getList('degree', {representation:'detail'}).then(function(data) {
         vm.degrees = data;
       });
-      member.getList('bike-rent', {filters: {currentPeriod:true}}).then(function(data) {
+      member.getList('bike-rent', {representation:'detail', filters: {currentPeriod:true}}).then(function(data) {
         vm.bikeRents = data;
       });
     }

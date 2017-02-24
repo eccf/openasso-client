@@ -364,11 +364,11 @@
             files: [prefixCtrlPath + 'booking/booking_list.controller.js']
           });
         }],
-        bookings: ['_DataService', function (_DataService) {
-          return _DataService.getListFromCache('booking');
-        }],
         currentPeriod: ['_DataService', function (_DataService) {
           return _DataService.getOne('period').one('current').get();
+        }],
+        bookings: ['_DataService', 'currentPeriod', function (_DataService, currentPeriod) {
+          return _DataService.getRelatedList('period', currentPeriod.id, 'booking', {representation:'detail'});
         }]
       },
       controller: 'BookingListController',
